@@ -1,0 +1,21 @@
+* {
+    font-family: 'Cormorant Unicase', serif; 
+}
+.navbar {
+    background: none;
+}
+
+.navbar-brand {
+    font-size: 3rem;
+}
+
+.hero {
+    background-image: url(../images/Folded-Clothes-1024x337.jpeg);
+    background-size: cover;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 550px;
+    position: relative;
+    opacity: .7;
+}
