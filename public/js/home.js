@@ -1,5 +1,5 @@
 
-// fetch('https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyBz7e4X_piywmlaQOSdB4DPoaqq6PI9lfk')
+// fetch('https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=APIKEY')
 
 //     .then(res => res.json())
 //     .then(data => {
