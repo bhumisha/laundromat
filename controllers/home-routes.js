@@ -1,13 +1,13 @@
 const router = require('express').Router();
 
-let post = {
-  loggedIn: true
+let session = {
+  loggedIn: false
 }
 
 router.get('/', function (req, res) {
 
   res.render('home',{
-    post
+    session
   });
 });
 
