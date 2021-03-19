@@ -4,12 +4,23 @@
 p{
     font-size: 1em;
 }
-#map {
-    height: 400px;
-    /* The height is 400 pixels */
-    width: 100%;
-    /* The width is the width of the web page */
-  }
+#loginForm{
+    display: none;
+    background-color: rgba(96,96,96, .5);
+    border-radius: 25px;
+    width: 80%;
+    padding: 15px;
+    color: white;
+
+}
+#signUpForm{
+    display: none;
+    background-color: rgba(96,96,96, .5);
+    border-radius: 25px;
+    width: 80%;
+    padding: 15px;
+    color: white;
+}
 .navbar {
     background: none;
 }
