@@ -6,20 +6,32 @@ const Orders = require('./Orders');
 
 // create associations
 
-//Address belongs to Customer. 
-Addresses.belongsTo(Customers, {
-  foreignKey: 'address_id',
+// //Customers has one Addresses.
+Customers.hasOne(Addresses, {
+  foreignKey: 'customer_id',
+});
+
+
+Addresses.belongsTo(Customers,{
+  foreignKey: 'customer_id',
+   onDelete: 'SET NULL'
+});
+
+Laundromats.hasOne(Addresses, {
+  foreignKey: 'laundromat_id'
+});
+
+Addresses.belongsTo(Laundromats,{
+  foreignKey: 'laundromat_id',
   onDelete: 'SET NULL'
 });
 
-Addresses.belongsTo(Laundromats, {
-  foreignKey: 'address_id',
-  onDelete: 'SET NULL'
+
+Customers.hasMany(Orders,{
+  foreignKey: 'customer_id'
 });
 
-Customers.hasMany(Orders, {
-    foreignKey: 'customer_id'
-});
+
 
 Orders.belongsTo(Customers, {
   foreignKey: 'customer_id',
@@ -32,14 +44,5 @@ Orders.belongsTo(Customers, {
 //   onDelete: 'SET NULL'
 // });
 
-// //Customers has one Addresses.
-Customers.hasOne(Addresses, {
-  foreignKey: 'address_id',
-  onDelete: 'SET NULL'
-});
 
-Laundromats.hasOne(Addresses, {
-  foreignKey: 'address_id'
-});
-
-module.exports = { Customers, Addresses, Laundromats , Orders};
+module.exports = { Customers, Laundromats ,Addresses, Orders};

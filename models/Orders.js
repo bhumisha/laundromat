@@ -38,6 +38,7 @@ Orders.init(
     },
     {
         sequelize,
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'orders'
@@ -45,3 +46,5 @@ Orders.init(
 
 
 );
+
+module.exports = Orders;

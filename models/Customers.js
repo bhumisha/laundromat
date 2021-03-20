@@ -2,7 +2,6 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const bcrypt = require("bcrypt");
 
-
 class Customers extends Model{
     // set up method to run on instance data (per user) to check password
     checkPassword(loginPw) {
@@ -41,13 +40,6 @@ Customers.init(
         phone:
         {
             type:DataTypes.STRING
-        },
-        address_id:{
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'addresses',
-                key: 'id'
-            }
         }
     },
     {
@@ -64,6 +56,7 @@ Customers.init(
             // }
           },
         sequelize,
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'customers'
@@ -71,3 +64,5 @@ Customers.init(
 
 
 );
+
+module.exports = Customers;

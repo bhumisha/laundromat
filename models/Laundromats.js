@@ -1,5 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const bcrypt = require("bcrypt");
+
 
 class Laundromats extends Model{
     // set up method to run on instance data (per user) to check password
@@ -38,17 +40,23 @@ Laundromats.init(
         phone:
         {
             type:DataTypes.STRING
-        },
-        address_id:{
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'addresses',
-                key: 'id'
-            }
         }
     },
     {
+        hooks: {
+            // set up beforeCreate lifecycle "hook" functionality
+            async beforeCreate(newUserData) {
+              newUserData.password = await bcrypt.hash(newUserData.password, 10);
+              return newUserData;
+            },
+      
+            // async beforeUpdate(updatedUserData) {
+            //   updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+            //   return updatedUserData;
+            // }
+          },
         sequelize,
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'laundromats'
@@ -56,3 +64,6 @@ Laundromats.init(
 
 
 );
+
+
+module.exports = Laundromats;

@@ -1,4 +1,4 @@
-const {Model, DataTypes} = require('sequelize');
+const { Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Addresses extends Model{}
@@ -36,10 +36,25 @@ Addresses.init(
         {
             type: DataTypes.INTEGER,
             allowNull: false
+        },
+        customer_id:{
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'customers',
+                key: 'id'
+            }
+        },
+        laundromat_id:{
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'laundromats',
+                key: 'id'
+            }
         }
     },
     {
         sequelize,
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'addresses'
@@ -47,3 +62,4 @@ Addresses.init(
 
 
 );
+module.exports = Addresses;
