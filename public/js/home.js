@@ -1,10 +1,5 @@
 
-// fetch('https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=API_KEY')
 
-//     .then(res => res.json())
-//     .then(data => {
-//         console.log(data);
-//     })
 
 // $("#findZip").click(function () {
 //     var searchFor = $("#zip-input").val();

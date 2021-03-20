@@ -1,3 +1,10 @@
+:root {
+    --primary-color: #a1cae2;
+    --secondary-color: #c2b092;
+    --tertiary-color: #cfc5a5;
+    --quarternary-color: #eae3c8;
+}
+
 /* -----Global Rules */
 * {
     font-family: 'Cormorant Unicase', serif;
@@ -32,6 +39,8 @@ p{
     width: 80%;
     padding: 15px;
     color: white;
+    height: 300px;
+    overflow-y: scroll;
 }
 .navbar {
     background: none;
@@ -67,6 +76,9 @@ p{
     text-shadow: 2px 2px #000000;
 }
 
+#footerBody{
+    background-color: var(--quarternary-color);
+}
 @media screen and (max-width: 991px) {
     /* ----Hero Rules */
     .hero {
