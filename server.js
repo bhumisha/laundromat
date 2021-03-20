@@ -6,7 +6,7 @@ const express = require('express');
 const exphbs  = require('express-handlebars');
 const helpers = require('./utils/helpers');
 const routes = require("./controllers");
-const models = require("./models");
+// const models = require("./models");
 // const { TableHints } = require('sequelize/types');
 // const { table } = require('console');
 
