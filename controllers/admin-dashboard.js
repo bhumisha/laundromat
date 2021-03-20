@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Customers, Laundromats, Addresses, Orders } = require('../models');
+const { Customers, Laundromats, Locations, Orders } = require('../models');
 
 
 let session = {
@@ -8,28 +8,29 @@ let session = {
 }
 
 //Get all the Orders information when Laundromat login and load Order Home page..
-router.get('/', (req, res) => {
+router.get('/orders', (req, res) => {
   console.log('======================');
   Orders.findAll({
+    where: {
+      laundromat_id: req.session?req.session.laundromat_id:1
+      },
     attributes: [
       'id',
       'order_date',
-      'order_status'
+      'order_status',
+      'customer_id'
+
     ],
     include: [
       {
         model: Customers,
-        attributes: ['id', 'name', 'email', 'phone'],
-        // include: {
-        //   model: Addresses,
-        //   attributes: ['id','street_address', 'house_number', 'city', 'state','zipcode','customer_id']
-        // }
-      },
+        attributes: ['id', 'name', 'email', 'phone','street_address', 'apartment_no', 'city', 'state','zip_code'],
+      }
+      
     ]
   })
   .then(dbOrdersData => {
-    console.log(dbOrdersData);
-   // res.json(dbOrdersData);
+    res.json(dbOrdersData);
     const orders = dbOrdersData.map(order => order.get({ plain: true }));
     if(req.session.loggedIn){}
     else{
@@ -61,11 +62,7 @@ router.get('/order/:id', (req, res) => {
     include: [
       {
         model: Customers,
-        attributes: ['id', 'name', 'email', 'phone'],
-        // include: {
-        //   model: Addresses,
-        //   attributes: ['id','street_address', 'house_number', 'city', 'state','zipcode','customer_id']
-        // }
+        attributes: ['id', 'name', 'email', 'phone','street_address', 'apartment_no', 'city', 'state','zip_code'],
       },
     ]
   })
@@ -74,7 +71,7 @@ router.get('/order/:id', (req, res) => {
         res.status(404).json({ message: 'No order found with this id' });
         return;
       }
-      //res.json(dbOrderData);
+      res.json(dbOrderData);
       const order = dbOrderData.get({ plain: true });
 
       res.render('single-order', {
@@ -90,7 +87,7 @@ router.get('/order/:id', (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/order');
+    res.redirect('/orders');
     return;
   }
 

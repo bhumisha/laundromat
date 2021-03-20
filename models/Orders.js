@@ -16,6 +16,10 @@ Orders.init(
         {
             type: DataTypes.DATE
         },
+        order_type:
+        {
+            type: DataTypes.STRING
+        },
         order_status:
         {
             type: DataTypes.STRING
@@ -27,13 +31,13 @@ Orders.init(
                 key: 'id'
             }
         },
-        // laundromat_id:{
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //         model: 'laundromats',
-        //         key: 'id'
-        //     }
-        // },
+        laundromat_id:{
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'laundromats',
+                key: 'id'
+            }
+        },
         
     },
     {
