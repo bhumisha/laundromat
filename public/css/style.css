@@ -1,8 +1,20 @@
+/* -----Global Rules */
 * {
     font-family: 'Cormorant Unicase', serif;
 }
 p{
     font-size: 1em;
+}
+/* -----Hero Rules */
+#smHeading{
+    color: #fff;
+    text-shadow: 2px 2px #000;
+}
+#smHeading h2 {
+    font-size: 50px;
+}
+#carouselHero{
+    text-shadow:1px 1px #ffffff;
 }
 #loginForm{
     display: none;
@@ -55,28 +67,33 @@ p{
     text-shadow: 2px 2px #000000;
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 991px) {
+    /* ----Hero Rules */
     .hero {
         background-image: url(../images/towels.jpeg);
         background-size: cover;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        height: 900px;
+        height: 750px;
         position: relative;
-        opacity: .7;
+        opacity: 1;
+    }
+    #windowRt{
+        display: none;
     }
 }
 
 @media screen and (max-width: 500px) {
+    /* ----Hero Rules */
     .hero {
         background-image: url(../images/towels.jpeg);
         background-size: cover;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        height: 800px;
+        height: 700px;
         position: relative;
-        opacity: .7;
+        opacity: 1;
     }
 }
