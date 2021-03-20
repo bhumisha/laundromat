@@ -40,7 +40,32 @@ Customers.init(
         phone:
         {
             type:DataTypes.STRING
-        }
+        },
+        street_address: 
+        {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        apartment_no:
+        {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        city:
+        {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        state:
+        {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        zip_code:
+        {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
     },
     {
         hooks: {
