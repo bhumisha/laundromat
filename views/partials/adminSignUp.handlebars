@@ -1,57 +1,17 @@
-<div class="hero">
-    <div class="container ">
-        <div class="row">
-            <div class="col-12 col-lg-5 ">
-                <div id="smHeading" class="d-lg-none" align="center">
-                    <h2>Dry Clean </h2>
-                    <h3>or</h3>
-                    <h2>Wash & Fold?</h2>
-                    <p>One less thing to worry about...</p>
-                </div>
-                <div class="row align-items-center p-3 d-none d-lg-inline" align="center">
-                    <h2>Dry Clean </h2>
-                    <h3>or</h3>
-                    <h2>Wash & Fold?</h2>
-                    <p>One less thing to worry about...</p>
-                </div>
-                <div class="row align-items-center">
-                    <div class="d-flex justify-content-center">
-                        <button class="btn btn-secondary d-lg-none" id="smLogin">Login</button>
-                        <button class="btn btn-secondary d-none d-lg-inline" id="loginBtn">Login</button>
-                        <span class="p-3 text-light">or</span>
-                        <button class="btn btn-primary d-lg-none" id="smSignUp">Sign-Up</button>
-                        <button class="btn btn-primary d-none d-lg-inline" id="signUpBtn">Sign-Up</button>
-                    </div>
-                </div>
-            </div>
-            <div class="d-md-none d-lg-flex col-lg-7 lg-screen-display" id="windowRt">
-                <div id="carouselHero" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner pb-5">
-                        <div class="carousel-item active" align="center">
-                            <h3>No time to lug that pile of clothes to the laundromat?</h3>
-                        </div>
-                        <div class="carousel-item">
-                            <h1>Which one is the clean pile...?</h1>
-                        </div>
-                        <div class="carousel-item">
-                            <h1>We're here to help...</h1>
-                        </div>
-                    </div>
-                </div>
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="loginEmail">Email address</label>
-                        <input type="email" class="form-control" id="loginEmail" autocomplete="email"
-                            aria-describedby="emailHelp" placeholder="Enter email">
-                    </div>
-                    <div class="form-group">
-                        <label for="loginPw">Password</label>
-                        <input type="password" class="form-control" id="loginPw" autocomplete="current-password"
-                            placeholder="Password">
-                    </div>
-                    <button type="submit" class="mt-3 btn btn-primary">Login</button>
-                </form>
-                <form id="signUpForm">
+
+<div class="modal fade" id="adminSignUpModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+    
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Partner Sign Up</h5>
+        <button type="button" class="btn btn-outline-dark btn-rounded" data-bs-toggle="modal" data-bs-target="#adminLoginModel">
+                       Login instead!
+                    </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
                     <div class="form-group">
                         <label for="signUpEmail">Email address</label>
                         <input type="email" class="form-control" id="signUpEmail" autocomplete="email"
@@ -140,66 +100,10 @@
                         <input type="number" class="form-control" id="signUpZip" autocomplete="postal-code"
                             aria-describedby="emailHelp" placeholder="ZIP">
                     </div>
-                    <button type="submit" class="mt-3 btn btn-primary">Sign-Up</button>
-                </form>
-            </div>
-        </div>
+                    <button type="submit" class="mt-3 btn btn-primary">Sign-Up</button></div>
     </div>
+  </div>
 </div>
-<div class="container">
-    <div class="row p-4">
-        <div class="col-4">
-            <h1>How it works:</h1>
-        </div>
-        <div class="col-8">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos dolorem, dicta quo, eaque
-                consectetur ex nostrum consequatur labore reiciendis quisquam commodi suscipit? Quam ipsam fugit animi
-                ullam inventore placeat maiores.</p>
-        </div>
-    </div>
-    <div class="row p-4">
-        <div class="col-8">
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum voluptas voluptates inventore dolore id
-                eos alias commodi, tenetur non, explicabo omnis voluptate fugit sed ipsum eligendi similique eius nulla
-                cumque!</p>
-        </div>
-        <div class="col-4">
-            <h1>Pricing</h1>
-        </div>
-    </div>
-    <div class="row p-4">
-        <div class="col-4">
-            <h1>Something Else</h1>
-        </div>
-        <div class="col-8">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos dolorem, dicta quo, eaque
-                consectetur ex nostrum consequatur labore reiciendis quisquam commodi suscipit? Quam ipsam fugit animi
-                ullam inventore placeat maiores.</p>
-        </div>
-    </div>
-</div>
-<section class="">
-    <footer class="text-center " id="footerBody">
-        <div class="container p-4 pb-0">
-            <section class="">
-                <p class="d-flex justify-content-center align-items-center">
-                    <span class="me-3">Are you a laundromat owner interested in joining our team?</span>
-                    <button type="button" class="btn btn-outline-dark btn-rounded" data-bs-toggle="modal" data-bs-target="#adminSignUpModel">
-                        Sign up!
-                    </button>
-                </p>
-            </section>
-        </div>
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2021 Copyright:
-            <a class="text-white" href="https://Laundry.com/">Laundry.com</a>
-        </div>
-    </footer>
-</section>
-{{> adminSignUp }} 
-
-
-
-
-<script src="./js/home.js"></script>
+{{> adminLogin }} 
+{{!-- <script src="./js/admin_signup.js"></script> --}}
 </script>
