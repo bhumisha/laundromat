@@ -4,10 +4,21 @@ module.exports = {
       date
     ).getFullYear()}`;
   },
-  
-  format_plural: (word, amount) => {
-    if (amount !== 1) {
-      return `${word}s`;
+
+  next_step: word => {
+    switch (word) {
+      case 'Pick':
+        word = 'Accept Order'
+        break;
+      case 'Accepted':
+        word = 'Cleaning'
+        break;
+      case 'Cleaning':
+        word = 'Delivering'
+        break;
+      case 'Delivering':
+        word = 'Complete'
+        break;
     }
 
     return word;
