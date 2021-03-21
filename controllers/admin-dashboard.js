@@ -4,7 +4,7 @@ const { Customers, Laundromats, Locations, Orders } = require('../models');
 
 
 let session = {
-  loggedIn: false
+  loggedIn: true
 }
 
 //Get all the Orders information when Laundromat login and load Order Home page..
@@ -12,7 +12,7 @@ router.get('/orders', (req, res) => {
   console.log('======================');
   Orders.findAll({
     where: {
-      laundromat_id: req.session?req.session.laundromat_id:1
+      laundromat_id: 1  //req.session?req.session.laundromat_id:1
       },
     attributes: [
       'id',
@@ -30,8 +30,9 @@ router.get('/orders', (req, res) => {
     ]
   })
   .then(dbOrdersData => {
-    res.json(dbOrdersData);
+    // res.json(dbOrdersData);   TWO 'RES' CALLS CAUSES AN ERROR. 
     const orders = dbOrdersData.map(order => order.get({ plain: true }));
+    console.log(orders[0]);
     if(req.session.loggedIn){}
     else{
       req.session.loggedIn = false;
