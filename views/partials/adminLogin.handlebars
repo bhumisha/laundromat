@@ -3,7 +3,6 @@
 
   <div class="modal-dialog">
     <div class="modal-content">
-      <div><a href="/adminSignUp">SignUp instead</a></div>
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Partner Sign Up</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -12,15 +11,16 @@
         <form class="login-form">
                     <div class="form-group">
                         <label for="loginEmail">Email address</label>
-                        <input type="email" class="form-control" id="loginAdminEmail" autocomplete="email"
+                        <input type="email" class="form-control loginAdminEmail" id="loginAdminEmail" autocomplete="email"
                             aria-describedby="emailHelp" placeholder="Enter email">
                     </div>
                     <div class="form-group">
                         <label for="loginPw">Password</label>
-                        <input type="password" class="form-control" id="loginAdminPw" autocomplete="new-password"
+                        <input type="password" class="form-control loginAdminPw" id="loginAdminPw" autocomplete="new-password"
                             placeholder="Password">
                     </div>
-                    <button type="submit" class="mt-3 btn btn-primary">Login</button>
+                    <button type="submit" class="mt-3 btn btn-secondary">Login</button>
+                    <button class="btn btn-primary d-lg-none mx-2 mt-3" data-bs-dismiss="modal" id="smSignUp" data-bs-toggle="modal" data-bs-target="#adminSignUpModel">Sign-Up instead</button>
         </form>
         </div>
     </div>
