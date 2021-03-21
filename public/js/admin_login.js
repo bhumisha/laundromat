@@ -1,8 +1,8 @@
 async function loginFormHandler(event) {
     event.preventDefault();
   
-    const email = document.querySelector('#loginAdminEmail').value.trim();
-    const password = document.querySelector('#loginAdminPw').value.trim();
+    const email = document.querySelector('.loginAdminEmail').value.trim();
+    const password = document.querySelector('.loginAdminPw').value.trim();
     debugger;
     if (email && password) {
       const response = await fetch('/api/admin/login', {
@@ -15,7 +15,8 @@ async function loginFormHandler(event) {
       });
   
       if (response.ok) {
-        document.location.replace('/api/orders/'); //IT will replace with ADmin - Laundromat's Orders.
+        document.location.replace('/admin/orders/'); //IT will replace with ADmin - Laundromat's Orders.
+        //---------------REPLACED 'api/orders' with 'admin/orders'-----------------
       } else {
         alert(response.statusText);
       }
