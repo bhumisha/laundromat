@@ -58,7 +58,7 @@ router.post('/', (req, res) => {
       req.session.save(() => {
         req.session.laundromat_id = dbData.id;
         req.session.laundromat_email = dbData.email;
-        req.session.loggedIn = true;
+        req.session.adminLoggedIn = true;
         res.json(dbData);
       });
     })
@@ -90,7 +90,7 @@ router.post('/login', (req, res) => {
     req.session.save(() => {
       req.session.laundromat_id = dbLaundromatData.id;
       req.session.laundromat_email = dbLaundromatData.email;
-      req.session.loggedIn = true;
+      req.session.adminLoggedIn = true;
   
       res.json({ laundormat: dbLaundromatData, message: 'You are now logged in!' });
     });
@@ -98,7 +98,7 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.adminLoggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
     });
