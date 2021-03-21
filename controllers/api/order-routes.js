@@ -1,14 +1,42 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { Customers, Laundromats, Locations, Orders } = require('../../models');
-const withAuth = require('../../utils/auth');
+const {withAuth,withAdminAuth} = require('../../utils/auth');
 
-// get all users
+// // get all users
+// router.get('/', (req, res) => {
+//   console.log('======================');
+//   Orders.findAll({
+//     where: {
+//       laundromat_id: req.session.laundromat_id
+//     },
+//     attributes: [
+//       'id',
+//       'order_date',
+//       'order_type',
+//       'order_status'
+//     ],
+//     include: [
+//       {
+//         model: Customers,
+//         attributes: ['id', 'name', 'email', 'phone','street_address', 'apartment_no', 'city', 'state','zip_code'],
+//       },
+//     ]
+//   })
+//     .then(dbOrdersData => res.json(dbOrdersData))
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
+
+
+//Get all the Orders information when Customers logined and load Order Home page..
 router.get('/', (req, res) => {
   console.log('======================');
   Orders.findAll({
     where: {
-      laundromat_id: req.session.laundromat_id
+      customer_id: req.session.customer_id
     },
     attributes: [
       'id',
@@ -29,7 +57,6 @@ router.get('/', (req, res) => {
       res.status(500).json(err);
     });
 });
-
 
 
 //Get Single Order and laundromat can update status and add comment
@@ -79,11 +106,10 @@ router.get('/:id', (req, res) => {
 // });
 
 
-router.put('/:id', withAuth, (req, res) => {
-  Post.update(
+router.put('/:id', withAdminAuth, (req, res) => {
+  Orders.update(
     {
-      title: req.body.title,
-      content:req.body.content
+      order_status: req.body.order_status
     },
     {
       where: {
@@ -91,12 +117,12 @@ router.put('/:id', withAuth, (req, res) => {
       }
     }
   )
-    .then(dbPostData => {
-      if (!dbPostData) {
-        res.status(404).json({ message: 'No post found with this id' });
+    .then(dbOrderData => {
+      if (!dbOrderData) {
+        res.status(404).json({ message: 'No order found with this id' });
         return;
       }
-      res.json(dbPostData);
+      res.json(dbOrderData);
     })
     .catch(err => {
       console.log(err);
@@ -104,24 +130,24 @@ router.put('/:id', withAuth, (req, res) => {
     });
 });
 
-// router.delete('/:id', withAuth, (req, res) => {
-//   console.log('id', req.params.id);
-//   Post.destroy({
-//     where: {
-//       id: req.params.id
-//     }
-//   })
-//     .then(dbPostData => {
-//       if (!dbPostData) {
-//         res.status(404).json({ message: 'No post found with this id' });
-//         return;
-//       }
-//       res.json(dbPostData);
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
+router.delete('/:id', withAdminAuth, (req, res) => {
+  console.log('id', req.params.id);
+  Orders.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbOrderData => {
+      if (!dbOrderData) {
+        res.status(404).json({ message: 'No order found with this id' });
+        return;
+      }
+      res.json(dbOrderData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;
