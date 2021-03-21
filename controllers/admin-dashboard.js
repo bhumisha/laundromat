@@ -4,7 +4,7 @@ const { Customers, Laundromats, Locations, Orders } = require('../models');
 
 
 let session = {
-  loggedIn: false
+  adminLoggedIn: false
 }
 
 //Get all the Orders information when Laundromat login and load Order Home page..
@@ -32,13 +32,13 @@ router.get('/orders', (req, res) => {
   .then(dbOrdersData => {
     res.json(dbOrdersData);
     const orders = dbOrdersData.map(order => order.get({ plain: true }));
-    if(req.session.loggedIn){}
+    if(req.session.adminLoggedIn){}
     else{
-      req.session.loggedIn = false;
+      req.session.adminLoggedIn = false;
     }
     res.render('orders', {
       orders,
-      loggedIn: req.session.loggedIn
+      adminLoggedIn: req.session.adminLoggedIn
     });
   })
   .catch(err => {
@@ -76,7 +76,7 @@ router.get('/order/:id', (req, res) => {
 
       res.render('single-order', {
         order,
-        loggedIn: req.session.loggedIn
+        adminLoggedIn: req.session.adminLoggedIn
       });
     })
     .catch(err => {
@@ -86,7 +86,7 @@ router.get('/order/:id', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.adminLoggedIn) {
     res.redirect('/orders');
     return;
   }
@@ -95,7 +95,7 @@ router.get('/login', (req, res) => {
 });
 
 // router.get('/signup', (req, res) => {
-//   if (req.session.loggedIn) {
+//   if (req.session.adminLoggedIn) {
 //     res.redirect('/');
 //     return;
 //   }

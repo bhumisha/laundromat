@@ -7,4 +7,15 @@ const withAuth = (req, res, next) => {
   }
 };
 
-module.exports = withAuth;
+
+
+
+//This will check if user has already logged in if not than ask for login.
+const withAdminAuth = (req, res, next) => {
+  if (!req.session.laundromat_id) {
+    res.redirect('/login');
+  } else {
+    next();
+  }
+};
+module.exports = { withAuth,withAdminAuth};

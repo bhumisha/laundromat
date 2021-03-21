@@ -49,7 +49,7 @@ Customers.init(
         apartment_no:
         {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         city:
         {
