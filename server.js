@@ -1,32 +1,48 @@
-
 const path = require('path');
-const sequelize = require("./config/connection");
-const PORT = process.env.PORT || 3000;
 const express = require('express');
-const exphbs  = require('express-handlebars');
-const helpers = require('./utils/helpers');
-const routes = require("./controllers");
-// const models = require("./models");
-// const { TableHints } = require('sequelize/types');
-// const { table } = require('console');
-
-const hbs = exphbs.create({ helpers });
+const session = require('express-session');
+const exphbs = require('express-handlebars');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// set up Handlebars.js as your app's template engine of choice
+const sequelize = require("./config/connection");
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+const sess = {
+  secret: 'Super secret secret',
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  }),
+  rolling: true, // <-- Set `rolling` to `true`
+  cookie: {  
+      maxAge: 6000 //10 sec.
+  }
+};
+
+app.use(session(sess));
+
+//Helpers contains util files which have generic format functions.
+const helpers = require('./utils/helpers');
+
+//To set handle bar engine.
+const hbs = exphbs.create({ helpers });
+
+//To registering handlebar and set engine value.
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+//Express is used to make api calls.
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// turn on routes
-app.use(routes);
+//Controllers is interface between model and view. It has api which connect to Db and get the model output and provide to view apis/ pages.
+app.use(require('./controllers/'));
 
-app.use(express.static('views/images'));
-
+//Sequelize sync is always in sync with db changes.
 /**
  *  Connect to DB server and Database.
  * The Sequelize sync taking the models and connecting / map them to database Table and if they dont find table, it will create it for you.
@@ -38,5 +54,52 @@ app.use(express.static('views/images'));
  * so it's best to keep the {force: false}.   
 **/
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log("Now listening to port " + PORT));
+  app.listen(PORT, () => console.log("Now listening to port " + PORT));
 });
+
+
+
+// const path = require('path');
+
+// const express = require('express');
+// const session = require('express-session');
+// const exphbs  = require('express-handlebars');
+
+// const helpers = require('./utils/helpers');
+// const routes = require("./controllers");
+
+// const sequelize = require("./config/connection");
+// const PORT = process.env.PORT || 3000;
+// const hbs = exphbs.create({ helpers });
+
+// const app = express();
+// const SequelizeStore = require('connect-session-sequelize')(session.Store);
+// const sess = {
+//   secret: 'Super secret secret',
+//   resave: false,
+//   saveUninitialized: true,
+//   store: new SequelizeStore({
+//     db: sequelize
+//   }),
+// //   rolling: true, // <-- Set `rolling` to `true`
+// //   cookie: {  
+// //       maxAge: 6000 //10 sec.
+// //   }
+// };
+
+// app.use(session(sess));
+
+
+
+// // set up Handlebars.js as your app's template engine of choice
+// app.engine('handlebars', hbs.engine);
+// app.set('view engine', 'handlebars');
+
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+
+// // turn on routes
+// app.use(routes);
+
+// app.use(express.static('views/images'));

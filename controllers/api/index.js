@@ -6,7 +6,7 @@ const orderRoutes = require('./order-routes');
 
 //Tell the api to use this routes
 router.use('/admin', adminRoutes);
-router.use('/order', orderRoutes);
+router.use('/orders', orderRoutes);
 // router.use('/customer', customerRoutes);
 
 module.exports = router;

@@ -80,8 +80,8 @@ router.post('/login', (req, res) => {
       return;
     }
 
-    const validPassword = dbLaundromatData.checkPassword(req.body.password);
-
+    //const validPassword = dbLaundromatData.checkPassword(req.body.password);
+    const validPassword = dbLaundromatData.password === req.body.password?true:false;
     if (!validPassword) {
       res.status(400).json({ message: 'Incorrect password!' });
       return;
