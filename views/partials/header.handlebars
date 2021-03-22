@@ -7,15 +7,10 @@
         <a class="nav-link" aria-current="page" href="#">Place Order</a>
         <a class="nav-link" id="logout" href="/">Logout</a>
         {{else}}
-{{!-- <<<<<<< HEAD
-        {{!-- <a class="nav-link" href="#">Sign-Up</a> --}}
-        <a class="nav-link" href="/">Login</a>
-======= --}}
         <a class="nav-link d-lg-none" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#custLoginModel" id="smLogin">Login</a>
-        <a class="nav-link d-none d-lg-inline loginBtn" id="loginBtn">Login</a>
+        <a style="cursor: pointer;" class="nav-link d-none d-lg-inline loginBtn" id="loginBtn">Login</a>
         <a class="nav-link d-lg-none" id="smSignUp" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#custSignUpModel">Sign-Up</a>
-        <a class="nav-link d-none d-lg-inline signUpBtn" id="signUpBtn">Sign-Up</a>  
-
+        <a style="cursor: pointer;" class="nav-link d-none d-lg-inline signUpBtn" id="signUpBtn">Sign-Up</a>  
         {{/if}}
       </div>
     </div>
