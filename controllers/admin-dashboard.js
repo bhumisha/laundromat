@@ -53,7 +53,7 @@ router.get('/orders', (req, res) => {
 
 
 //Get Single Order and laundromat can update status and add comment
-router.get('/order/:id', (req, res) => {
+router.get('/orders/:id', (req, res) => {
   Orders.findOne({
     where: {
       id: req.params.id
@@ -75,7 +75,7 @@ router.get('/order/:id', (req, res) => {
         res.status(404).json({ message: 'No order found with this id' });
         return;
       }
-      res.json(dbOrderData);
+      // res.json(dbOrderData);
       const order = dbOrderData.get({ plain: true });
 
       res.render('single-order', {
