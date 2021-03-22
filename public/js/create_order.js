@@ -1,9 +1,9 @@
 async function createOrderFormHandler(event) {
     event.preventDefault();
-  
-    const order_status = ""//document.querySelector('input[name="post-title"]').value.trim();
-    const order_date = now();
-    const order_type = "";
+    
+    const order_status = "pick"
+    const order_date = document.querySelector('#srvcDate').value.trim();
+    const order_type = document.querySelector('#srvcType').value.trim()
 
     
     
@@ -12,7 +12,7 @@ async function createOrderFormHandler(event) {
     // ];
     
     const response = await fetch(`/api/orders/`, {
-      method: 'POST',
+      method: 'post',
       body: JSON.stringify({
         order_date,
         order_type,
@@ -24,11 +24,11 @@ async function createOrderFormHandler(event) {
     });
   
     if (response.ok) {
-      document.location.replace('/api/orders/');
+      document.location.replace('/cust');
     } else {
       alert(response.statusText);
     }
   }
   
-  document.querySelector('.createOrderForm').addEventListener('submit', createOrderFormHandler);
+  document.querySelector('#createOrderForm').addEventListener('submit', createOrderFormHandler);
   

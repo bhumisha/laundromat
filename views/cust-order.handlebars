@@ -7,23 +7,28 @@
                 <h2 class="accordion-header bg-light" id="headingOne">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        New Order
+                        Place your Order
                     </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <form action="post" class="row">
-                            <div class="col-12">
-                                <p class="">{{orders.0.customer.apartment_no}} {{orders.0.customer.street_address}}
-                                    <br>{{orders.0.customer.city}} {{orders.0.customer.state}}
-                                    {{orders.0.customer.zip_code}}</p>
+                        <form  class="row" id="createOrderForm">
+                            <div class="row">
+                                <div class="col-5">
+                                        <p>Default Pickup Address : </p>
+                                </div>
+                                <div class="col-7">
+                                    <p class="">{{orders.0.customer.apartment_no}} {{orders.0.customer.street_address}}
+                                        <br>{{orders.0.customer.city}} {{orders.0.customer.state}}
+                                        {{orders.0.customer.zip_code}}</p>
+                                </div>
                             </div>
                             <div class="col-12 py-3">
-                                <input type="date" class="form-select" name="" id="srvcDate">
+                                <input type="date" class="form-select" name="srvcDate" id="srvcDate">
                             </div>
                             <div class="col-12">
-                                <select class="form-select" id="validationCustom04" required>
+                                <select class="form-select" id="srvcType" required>
                                     <option selected disabled value="">Choose...</option>
                                     <option value="dryClean">Dry Clean</option>
                                     <option value="washNFold">Wash & Fold</option>
@@ -107,3 +112,6 @@
         </div></div>
     </div>
 </div>
+
+
+<script src="/js/create_order.js"></script>

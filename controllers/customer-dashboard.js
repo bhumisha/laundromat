@@ -2,20 +2,15 @@ const router = require('express').Router();
 
 const sequelize = require('../config/connection');
 const { Customers, Laundromats, Locations, Orders } = require('../models');
-
-
-let session = {
-  loggedIn: false
-}
-
+const {withAuth,withAdminAuth }= require('../utils/auth');
 
 // get all posts for dashboard
-router.get('/', (req, res) => {
-  console.log(req.session);
+router.get('/', withAuth, (req, res) => {
+  console.log("Session : " ,req.session);
   console.log('======================');
   Orders.findAll({
     where: {
-      customer_id: 1//req.session.customer_id
+      customer_id: req.session.customer_id
     },
     attributes: [
       'id',
@@ -32,18 +27,16 @@ router.get('/', (req, res) => {
   })
     .then(dbOrdersData => {
       const orders = dbOrdersData.map(order => order.get({ plain: true }));
-      console.log(orders);
-      res.render('cust-order', { orders, loggedIn: true }); // Here we are loading orders which are placed by logged in customer.
+      console.log("Orders From Cust" ,orders);
+      
+      res.render('cust-order', { 
+        orders, 
+        loggedIn: true }); // Here we are loading orders which are placed by logged in customer.
     })
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
-});
-
-
-router.get('/placeorder', (req, res) => {
-  res.render('placeorder');
 });
 
 //This is to render the Login Dashboard
@@ -54,5 +47,6 @@ router.get('/login', (req, res) => {
   }
   res.render('home');
 });
+
 
 module.exports = router;
