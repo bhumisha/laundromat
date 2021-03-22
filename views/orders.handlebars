@@ -3,7 +3,7 @@
     {{#each orders}}
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">{{this.customer.name}} (ORDER_TYPE)</h5>
+            <h5 class="card-title">{{this.customer.name}} ({{this.order_type}})</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{format_date this.order_date}}</h6>
             <p class="card-text">{{this.customer.apartment_no}} {{this.customer.street_address}}
                 <br>{{this.customer.city}} {{this.customer.state}} {{this.customer.zip_code}}</p>
@@ -13,3 +13,5 @@
     </div>
     {{/each}}
 </div>
+
+<script src="/js/edit-order.js"></script>

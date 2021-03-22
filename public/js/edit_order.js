@@ -19,10 +19,10 @@ async function editFormHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace('/orders/');
+    document.location.replace('/admin/orders/');
   } else {
     alert(response.statusText);
   }
 }
 
-document.querySelector('.edit-order-form').addEventListener('submit', editFormHandler);
+document.querySelector('.editOrderForm').addEventListener('submit', editFormHandler);
