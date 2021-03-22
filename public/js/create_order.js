@@ -19,7 +19,7 @@ async function createOrderFormHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace('/api/orders/');
+    document.location.replace('/cust/');
   } else {
     alert(response.statusText);
   }
