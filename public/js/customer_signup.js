@@ -23,7 +23,7 @@ async function signUpFormHandler(event) {
       });
   
       if (response.ok) {
-        document.location.replace('/api/orders/'); //IT will display - Customers's Orders.
+        document.location.replace('/cust'); //IT will display - Customers's Orders.
       } else {
         alert(response.statusText);
       }

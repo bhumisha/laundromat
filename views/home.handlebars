@@ -16,10 +16,10 @@
                 </div>
                 <div class="row align-items-center">
                     <div class="d-flex justify-content-center">
-                        <button class="btn btn-secondary d-lg-none" id="smLogin">Login</button>
+                        <button class="btn btn-secondary d-lg-none" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#custLoginModel" id="smLogin">Login</button>
                         <button class="btn btn-secondary d-none d-lg-inline" id="loginBtn">Login</button>
                         <span class="p-3 text-light">or</span>
-                        <button class="btn btn-primary d-lg-none" id="smSignUp">Sign-Up</button>
+                        <button class="btn btn-primary d-lg-none" id="smSignUp" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#custSignUpModel">Sign-Up</button>
                         <button class="btn btn-primary d-none d-lg-inline" id="signUpBtn">Sign-Up</button>
                     </div>
                 </div>
@@ -82,57 +82,7 @@
                     <div class="form-group w-30">
                         <label for="signUpState">State</label>
                         <select id="signUpState" class="form-select ">
-                            <option value="AL">AL</option>
-                            <option value="AK">AK</option>
-                            <option value="AR">AR</option>
-                            <option value="AZ">AZ</option>
-                            <option value="CA">CA</option>
-                            <option value="CO">CO</option>
-                            <option value="CT">CT</option>
-                            <option value="DC">DC</option>
-                            <option value="DE">DE</option>
-                            <option value="FL">FL</option>
-                            <option value="GA">GA</option>
-                            <option value="HI">HI</option>
-                            <option value="IA">IA</option>
-                            <option value="ID">ID</option>
-                            <option value="IL">IL</option>
-                            <option value="IN">IN</option>
-                            <option value="KS">KS</option>
-                            <option value="KY">KY</option>
-                            <option value="LA">LA</option>
-                            <option value="MA">MA</option>
-                            <option value="MD">MD</option>
-                            <option value="ME">ME</option>
-                            <option value="MI">MI</option>
-                            <option value="MN">MN</option>
-                            <option value="MO">MO</option>
-                            <option value="MS">MS</option>
-                            <option value="MT">MT</option>
-                            <option value="NC">NC</option>
-                            <option value="NE">NE</option>
-                            <option value="NH">NH</option>
-                            <option value="NJ">NJ</option>
-                            <option value="NM">NM</option>
-                            <option value="NV">NV</option>
-                            <option value="NY">NY</option>
-                            <option value="ND">ND</option>
-                            <option value="OH">OH</option>
-                            <option value="OK">OK</option>
-                            <option value="OR">OR</option>
-                            <option value="PA">PA</option>
-                            <option value="RI">RI</option>
-                            <option value="SC">SC</option>
-                            <option value="SD">SD</option>
-                            <option value="TN">TN</option>
-                            <option value="TX">TX</option>
-                            <option value="UT">UT</option>
-                            <option value="VT">VT</option>
-                            <option value="VA">VA</option>
-                            <option value="WA">WA</option>
-                            <option value="WI">WI</option>
-                            <option value="WV">WV</option>
-                            <option value="WY">WY</option>
+                           {{>states}}
                         </select>
                     </div>
                     <div class="form-group">
@@ -197,12 +147,9 @@
         </div>
     </footer>
 </section>
-{{> adminSignUp }} 
+{{> custSignUp }} 
+{{>custLogin}}
 
-
-
-<script src="./js/home.js"></script>
-<script src="./js/customer_login.js"></script>
-<script src="./js/customer_signUp.js"></script>
-
-</script>
+<script src="/js/home.js"></script>
+<script src="/js/customer_login.js"></script>
+<script src="/js/customer_signUp.js"></script>
