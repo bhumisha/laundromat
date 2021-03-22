@@ -1,20 +1,3 @@
-//This logic is to search the laundormat bases on zip code.
-/*
-$("#findZip").click(function () {
-    var searchFor = $("#zip-input").val();
-    console.log(searchFor);
-    $("#zip-input").val("");
-});
-
-$("#zip-input").keypress(function (e) {
-    var key = e.which;
-    if (key == 13) {
-        event.preventDefault();
-        $("#findZip").click();
-        $("#zip-input").val("");
-    }
-});
-*/
 
 $('.loginBtn').click(function(){
     $('#loginForm').toggle();

@@ -8,9 +8,9 @@
                     <h1 class="mx-auto text-shadowW" align="center">Partner Portal</h1>
                     <div class="d-flex justify-content-center">
                         <button class="btn btn-secondary d-lg-none m-3" id="smLogin" data-bs-toggle="modal" data-bs-target="#adminLoginModel">Login</button>
-                        <button class="btn btn-secondary d-none d-lg-inline m-3" id="loginBtn">Login</button>
+                        <button class="btn btn-secondary d-none d-lg-inline m-3 loginBtn" id="loginBtn">Login</button>
                         <button class="btn btn-primary d-lg-none m-3" id="smSignUp" data-bs-toggle="modal" data-bs-target="#adminSignUpModel">Sign-Up</button>
-                        <button class="btn btn-primary d-none d-lg-inline m-3" id="signUpBtn">Sign-Up</button>
+                        <button class="btn btn-primary d-none d-lg-inline m-3 signUpBtn" id="signUpBtn">Sign-Up</button>
                     </div>
                 </div>
             </div>
@@ -41,98 +41,48 @@
                     </div>
                     <button type="submit" class="mt-3 btn btn-primary">Login</button>
                 </form>
-                <form id="signUpForm">
+                <form id="signUpForm" class="signUpForm">
                     <div class="form-group">
                         <label for="signUpName">Business Name</label>
-                        <input type="text" class="form-control" id="signUpName" autocomplete="Name"
+                        <input type="text" class="form-control signUpName" id="signUpName" autocomplete="Name"
                             aria-describedby="emailHelp" placeholder="Business Name">
                     </div>
                     <div class="form-group">
                         <label for="signUpEmail">Email address</label>
-                        <input type="email" class="form-control" id="signUpEmail" autocomplete="email"
+                        <input type="email" class="form-control signUpEmail" id="signUpEmail" autocomplete="email"
                             aria-describedby="emailHelp" placeholder="Enter email">
                         <small id="emailHelp" class="">We'll never share your email with anyone
                             else.</small>
                     </div>
                     <div class="form-group">
                         <label for="signUpPw">Password</label>
-                        <input type="password" class="form-control" id="signUpPw" autocomplete="new-password"
+                        <input type="password" class="form-control signUpPw" id="signUpPw" autocomplete="new-password"
                             placeholder="Password">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Re-Enter Password</label>
-                        <input type="password" class="form-control" id="pwVerify" autocomplete="new-password"
+                        <input type="password" class="form-control pwVerify" id="pwVerify" autocomplete="new-password"
                             placeholder="Re-Enter Password">
                     </div>
                     <div class="form-group">
                         <label for="signUpStreetAdd">Street Address</label>
-                        <input type="text" class="form-control" id="signUpStreetAdd" autocomplete="street-address"
+                        <input type="text" class="form-control signUpStreetAdd" id="signUpStreetAdd" autocomplete="street-address"
                             aria-describedby="emailHelp" placeholder="Street Address">
                     </div>
                     <div class="form-group">
                         <label for="signUpCity">City</label>
-                        <input type="text" class="form-control" id="signUpCity" autocomplete="city"
+                        <input type="text" class="form-control signUpCity" id="signUpCity" autocomplete="city"
                             aria-describedby="emailHelp" placeholder="City">
                     </div>
                     <div class="form-group w-30">
                         <label for="signUpState">State</label>
-                        <select id="signUpState" class="form-select ">
-                            <option value="AL">AL</option>
-                            <option value="AK">AK</option>
-                            <option value="AR">AR</option>
-                            <option value="AZ">AZ</option>
-                            <option value="CA">CA</option>
-                            <option value="CO">CO</option>
-                            <option value="CT">CT</option>
-                            <option value="DC">DC</option>
-                            <option value="DE">DE</option>
-                            <option value="FL">FL</option>
-                            <option value="GA">GA</option>
-                            <option value="HI">HI</option>
-                            <option value="IA">IA</option>
-                            <option value="ID">ID</option>
-                            <option value="IL">IL</option>
-                            <option value="IN">IN</option>
-                            <option value="KS">KS</option>
-                            <option value="KY">KY</option>
-                            <option value="LA">LA</option>
-                            <option value="MA">MA</option>
-                            <option value="MD">MD</option>
-                            <option value="ME">ME</option>
-                            <option value="MI">MI</option>
-                            <option value="MN">MN</option>
-                            <option value="MO">MO</option>
-                            <option value="MS">MS</option>
-                            <option value="MT">MT</option>
-                            <option value="NC">NC</option>
-                            <option value="NE">NE</option>
-                            <option value="NH">NH</option>
-                            <option value="NJ">NJ</option>
-                            <option value="NM">NM</option>
-                            <option value="NV">NV</option>
-                            <option value="NY">NY</option>
-                            <option value="ND">ND</option>
-                            <option value="OH">OH</option>
-                            <option value="OK">OK</option>
-                            <option value="OR">OR</option>
-                            <option value="PA">PA</option>
-                            <option value="RI">RI</option>
-                            <option value="SC">SC</option>
-                            <option value="SD">SD</option>
-                            <option value="TN">TN</option>
-                            <option value="TX">TX</option>
-                            <option value="UT">UT</option>
-                            <option value="VT">VT</option>
-                            <option value="VA">VA</option>
-                            <option value="WA">WA</option>
-                            <option value="WI">WI</option>
-                            <option value="WV">WV</option>
-                            <option value="WY">WY</option>
+                        <select id="signUpState" class="form-select signUpState">
+                            {{>states}}
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="signUpZip">ZIP Code</label>
-                        <input type="number" class="form-control" id="signUpZip" autocomplete="postal-code"
+                        <input type="number" class="form-control signUpZip" id="signUpZip" autocomplete="postal-code"
                             aria-describedby="emailHelp" placeholder="ZIP">
                     </div>
                     <button type="submit" class="mt-3 btn btn-primary">Sign-Up</button>
