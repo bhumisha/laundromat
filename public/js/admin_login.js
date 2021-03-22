@@ -3,7 +3,7 @@ async function loginaFormHandler(event) {
   
     const email = document.querySelector('.loginAdminEmail').value.trim();
     const password = document.querySelector('.loginAdminPw').value.trim();
-    debugger;
+    
     if (email && password) {
       const response = await fetch('/api/admin/login', {
         method: 'post',

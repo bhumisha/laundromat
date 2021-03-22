@@ -17,9 +17,9 @@ const sess = {
     db: sequelize
   }),
   rolling: true, // <-- Set `rolling` to `true`
-  cookie: {  
-      maxAge: 6000 //10 sec.
-  }
+  // cookie: {  
+  //     maxAge: //10000 //10 sec.
+  // }
 };
 
 app.use(session(sess));
@@ -57,49 +57,3 @@ sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening to port " + PORT));
 });
 
-
-
-// const path = require('path');
-
-// const express = require('express');
-// const session = require('express-session');
-// const exphbs  = require('express-handlebars');
-
-// const helpers = require('./utils/helpers');
-// const routes = require("./controllers");
-
-// const sequelize = require("./config/connection");
-// const PORT = process.env.PORT || 3000;
-// const hbs = exphbs.create({ helpers });
-
-// const app = express();
-// const SequelizeStore = require('connect-session-sequelize')(session.Store);
-// const sess = {
-//   secret: 'Super secret secret',
-//   resave: false,
-//   saveUninitialized: true,
-//   store: new SequelizeStore({
-//     db: sequelize
-//   }),
-// //   rolling: true, // <-- Set `rolling` to `true`
-// //   cookie: {  
-// //       maxAge: 6000 //10 sec.
-// //   }
-// };
-
-// app.use(session(sess));
-
-
-
-// // set up Handlebars.js as your app's template engine of choice
-// app.engine('handlebars', hbs.engine);
-// app.set('view engine', 'handlebars');
-
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
-// app.use(express.static(path.join(__dirname, 'public')));
-
-// // turn on routes
-// app.use(routes);
-
-// app.use(express.static('views/images'));

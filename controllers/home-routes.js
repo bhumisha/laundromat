@@ -1,16 +1,12 @@
 const router = require('express').Router();
-const fetch = require("node-fetch");
 
-let session = {
-  loggedIn: false
-}
-let hopeful = {};
+// const fetch = require("node-fetch");
+
 router.get('/', function (req, res) {
 
   res.render('home',{
-    session
+    loggedIn: req.session.loggedIn
   })
 });
-
 
 module.exports = router;

@@ -1,7 +1,7 @@
 //This will check if user has already logged in if not than ask for login.
 const withAuth = (req, res, next) => {
-  if (!req.session.user_id) {
-    res.redirect('/login');
+  if (!req.session.customer_id) {
+    res.redirect('/');
   } else {
     next();
   }

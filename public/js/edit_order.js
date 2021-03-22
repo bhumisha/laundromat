@@ -1,7 +1,7 @@
 async function editFormHandler(event) {
   event.preventDefault();
 
-  const order_status = ""//document.querySelector('input[name="post-title"]').value.trim();
+  const order_status = document.querySelector('select[name="orderStatus"]').value.trim();
   
   
   const id = window.location.toString().split('/')[
@@ -25,4 +25,4 @@ async function editFormHandler(event) {
   }
 }
 
-document.querySelector('.editOrderForm').addEventListener('submit', editFormHandler);
+document.querySelector('#btnOrderStatusUpdate').addEventListener('click', editFormHandler);

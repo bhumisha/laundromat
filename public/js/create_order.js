@@ -6,11 +6,6 @@ async function createOrderFormHandler(event) {
   const order_type = document.querySelector('#serviceSelect').value.trim();
   console.log(order_status, '----', order_date, '-----', order_type);
 
-
-  // const id = window.location.toString().split('/')[
-  //   window.location.toString().split('/').length - 1
-  // ];
-
   const response = await fetch(`/api/orders/`, {
     method: 'POST',
     body: JSON.stringify({
@@ -29,5 +24,4 @@ async function createOrderFormHandler(event) {
     alert(response.statusText);
   }
 }
-
 document.querySelector('.createOrderForm').addEventListener('submit', createOrderFormHandler);
