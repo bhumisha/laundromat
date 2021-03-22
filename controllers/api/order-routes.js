@@ -3,35 +3,9 @@ const sequelize = require('../../config/connection');
 const { Customers, Laundromats, Locations, Orders } = require('../../models');
 const {withAuth,withAdminAuth} = require('../../utils/auth');
 
-// // get all users
-// router.get('/', (req, res) => {
-//   console.log('======================');
-//   Orders.findAll({
-//     where: {
-//       laundromat_id: req.session.laundromat_id
-//     },
-//     attributes: [
-//       'id',
-//       'order_date',
-//       'order_type',
-//       'order_status'
-//     ],
-//     include: [
-//       {
-//         model: Customers,
-//         attributes: ['id', 'name', 'email', 'phone','street_address', 'apartment_no', 'city', 'state','zip_code'],
-//       },
-//     ]
-//   })
-//     .then(dbOrdersData => res.json(dbOrdersData))
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
-
 
 //Get all the Orders information when Customers logined and load Order Home page..
+//GET CUSTOMER ORDERS -> IT WILL GET CALLED AFTER EACH OPERATION. LIKE LOGIN / CREATE / EDIT
 router.get('/', (req, res) => {
   console.log('======================');
   Orders.findAll({
@@ -91,19 +65,24 @@ router.get('/:id', (req, res) => {
   });
 });
 
-// router.post('/', withAuth, (req, res) => {
-//   // expects {order_date: 'date', order_status: 'new', customer_id: 1}
-//   Orders.create({
-//     order_date: req.body.order_date,
-//     order_status: "new",
-//     customer_id: req.session.customer_id
-//   })
-//   .then(dbOrdersData => res.json(dbOrdersData))
-//   .catch(err => {
-//       console.log(err);
-//       res.status(500).json(err);
-//   });
-// });
+
+//CREATE CUSTOMER ORDER -> IT WILL GET CALLED FROM CREATE_ORDER.JS FROM JS
+router.post('/', withAuth, (req, res) => {
+  // expects {order_date: 'date', order_status: 'new', customer_id: 1}
+  Orders.create({
+    order_date: req.body.order_date,
+    order_status: "pick",
+    order_type:req.body.order_type,
+    customer_id: req.session.customer_id,
+    laundromat_id : "1"
+  })
+  .then(dbOrdersData => res.json(dbOrdersData))
+  .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+  });
+});
+
 
 
 router.put('/:id', withAdminAuth, (req, res) => {
@@ -117,18 +96,58 @@ router.put('/:id', withAdminAuth, (req, res) => {
       }
     }
   )
-    .then(dbOrderData => {
-      if (!dbOrderData) {
-        res.status(404).json({ message: 'No order found with this id' });
+    .then(dbPostData => {
+      if (!dbPostData) {
+        res.status(404).json({ message: 'No post found with this id' });
         return;
       }
-      res.json(dbOrderData);
+      res.json(dbPostData);
     })
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
 });
+
+
+
+//Get Single Order and laundromat can update status and add comment
+router.get('/:id', (req, res) => {
+  Orders.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: [
+      'id',
+      'order_date',
+      'order_status',
+    ],
+    include: [
+      {
+        model: Customers,
+        attributes: ['id', 'name', 'email', 'phone','street_address', 'apartment_no', 'city', 'state','zip_code'],
+      },
+    ]
+  })
+    .then(dbOrderData => {
+      if (!dbOrderData) {
+        res.status(404).json({ message: 'No order found with this id' });
+        return;
+      }
+      // res.json(dbOrderData);
+      const order = dbOrderData.get({ plain: true });
+
+      res.render('single-order', {
+        order,
+        adminLoggedIn: req.session.adminLoggedIn
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 
 router.delete('/:id', withAdminAuth, (req, res) => {
   console.log('id', req.params.id);
