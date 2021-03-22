@@ -1,0 +1,109 @@
+<div class="dashHero"></div>
+<div class="row">
+    <div class="col-1 col-md-1"></div>
+    <div class="col-10 col-md-4">
+        <div class="accordion mt-5 bg-light" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header bg-light" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        New Order
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <form action="post" class="row">
+                            <div class="col-12">
+                                <p class="">{{orders.0.customer.apartment_no}} {{orders.0.customer.street_address}}
+                                    <br>{{orders.0.customer.city}} {{orders.0.customer.state}}
+                                    {{orders.0.customer.zip_code}}</p>
+                            </div>
+                            <div class="col-12 py-3">
+                                <input type="date" class="form-select" name="" id="srvcDate">
+                            </div>
+                            <div class="col-12">
+                                <select class="form-select" id="validationCustom04" required>
+                                    <option selected disabled value="">Choose...</option>
+                                    <option value="dryClean">Dry Clean</option>
+                                    <option value="washNFold">Wash & Fold</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-success my-3" type="submit">Confirm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Change address
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <form class="row g-3 needs-validation" novalidate>
+                            <div class="col-md-8">
+                                <label for="validationCustom03" class="form-label">Street Address</label>
+                                <input type="text" class="form-control" id="validationCustom03" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid street address.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="validationCustom03" class="form-label">City</label>
+                                <input type="text" class="form-control" id="validationCustom03" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid city.
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationCustom04" class="form-label">State</label>
+                                <select class="form-select" id="validationCustom04" required>
+                                    <option selected disabled value="">Choose...</option>
+                                    {{>states}}
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid state.
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationCustom05" class="form-label">Zip</label>
+                                <input type="text" class="form-control" id="validationCustom05" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid zip.
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit">Submit Address</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container p-3 col-10 col-md-6">
+        <div class="row row-cols-1 " align="center">
+            <div class="overflow-auto">
+            {{#each orders}}
+            <div class="col mt-3 mx-auto">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">(ORDER_TYPE)</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{format_date this.order_date}}</h6>
+                        <p class="card-text">{{this.customer.apartment_no}} {{this.customer.street_address}}
+                            <br>{{this.customer.city}} {{this.customer.state}} {{this.customer.zip_code}}</p>
+                            <p>{{this.order_status}}</p>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div></div>
+    </div>
+</div>

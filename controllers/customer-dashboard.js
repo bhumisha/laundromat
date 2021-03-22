@@ -8,6 +8,40 @@ let session = {
   loggedIn: false
 }
 
+
+// get all posts for dashboard
+router.get('/', (req, res) => {
+  console.log(req.session);
+  console.log('======================');
+  Orders.findAll({
+    where: {
+      customer_id: 1//req.session.customer_id
+    },
+    attributes: [
+      'id',
+      'order_date',
+      'order_status'
+    ],
+    include: [
+      {
+        model: Customers,
+        attributes: ['id', 'name', 'email', 'phone','street_address', 'apartment_no', 'city', 'state','zip_code'],
+      }
+      
+    ]
+  })
+    .then(dbOrdersData => {
+      const orders = dbOrdersData.map(order => order.get({ plain: true }));
+      console.log(orders);
+      res.render('cust-order', { orders, loggedIn: true }); // Here we are loading orders which are placed by logged in customer.
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+
 router.get('/placeorder', (req, res) => {
   res.render('placeorder');
 });

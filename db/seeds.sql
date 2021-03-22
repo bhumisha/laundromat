@@ -1,7 +1,10 @@
 
 INSERT INTO `laundromat_db`.`laundromats` (`name`, `password`, `email`) VALUES ('admin', 'test123', 'admin@email.com');
-INSERT INTO `laundromat_db`.`customers` (`name`, `password`, `email`,`street_address`, `apt_number`, `city`, `state`, `zip_code`) 
-VALUES ('Bhumi', 'test123+', 'test@gmail.com','Blaco street', '23', 'Fremont', 'CA', '94538');
+INSERT INTO `laundromat_db`.`customers` (`name`, `password`, `email`,`street_address`, `apartment_no`, `city`, `state`, `zip_code`) 
+VALUES ('Tony', 'test123+', 'roood@gmail.com','Harrison', '243', 'Fremont', 'CA', '94538'),
+('Ben', 'test123', 'ben@email.com', 'Broadway', '1800', 'San Francisco' , 'CA' , '94109'),
+('Mike', 'test123', 'mike@email.com', 'Market', '2800', 'San Francisco' , 'CA' , '94109'),
+('April', 'test123', 'April@email.com', 'Castro', '400', 'San Francisco' , 'CA' , '94109');
 
 INSERT INTO `laundromat_db`.`locations` (`street_address`, `apt_number`, `city`, `state`, `zip_code`,`laundromat_id`) VALUES ('Blaco Street', '56', 'Fremont', 'CA', '94538','1');
 

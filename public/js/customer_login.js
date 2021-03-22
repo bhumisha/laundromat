@@ -15,7 +15,7 @@ async function loginFormHandler(event) {
       });
   
       if (response.ok) {
-        document.location.replace('/api/orders/custOrders'); //IT will replace with ADmin - Laundromat's Orders.
+        document.location.replace('/cust'); //IT will replace with ADmin - Laundromat's Orders.
       } else {
         alert(response.statusText);
       }
