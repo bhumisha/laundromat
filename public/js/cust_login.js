@@ -1,9 +1,10 @@
 async function loginFormHandler(event) {
     event.preventDefault();
   
-    const email = document.querySelector('#loginEmail').value.trim();
-    const password = document.querySelector('#loginPw').value.trim();
-    
+
+    const email = document.querySelector('.loginEmail').value.trim();
+    const password = document.querySelector('.loginPw').value.trim();
+
     if (email && password) {
       const response = await fetch('api/cust/login', {
         method: 'post',
@@ -21,7 +22,7 @@ async function loginFormHandler(event) {
       }
     }
   }
-  document.querySelector('#loginForm').addEventListener('submit', loginFormHandler);
+  document.querySelector('.loginForm').addEventListener('submit', loginFormHandler);
   
   
   

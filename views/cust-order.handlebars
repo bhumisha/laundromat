@@ -13,7 +13,8 @@
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <form  class="row" id="createOrderForm">
+
+                        <form  class="row createOrderForm">
                             <div class="row">
                                 <div class="col-5">
                                         <p>Default Pickup Address : </p>
@@ -28,7 +29,7 @@
                                 <input type="date" class="form-select" name="srvcDate" id="srvcDate">
                             </div>
                             <div class="col-12">
-                                <select class="form-select" id="srvcType" required>
+                                <select class="form-select" id="serviceSelect" required>
                                     <option selected disabled value="">Choose...</option>
                                     <option value="dryClean">Dry Clean</option>
                                     <option value="washNFold">Wash & Fold</option>
@@ -112,6 +113,5 @@
         </div></div>
     </div>
 </div>
-
 
 <script src="/js/create_order.js"></script>
