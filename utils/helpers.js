@@ -6,17 +6,18 @@ module.exports = {
   },
 
   next_step: word => {
+    word = word.toLowerCase();
     switch (word) {
-      case 'Pick':
-        word = 'Accept Order'
+      case 'pick':
+        word = 'Accepted'
         break;
-      case 'Accepted':
+      case 'accepted':
         word = 'Cleaning'
         break;
-      case 'Cleaning':
+      case 'cleaning':
         word = 'Delivering'
         break;
-      case 'Delivering':
+      case 'delivering':
         word = 'Complete'
         break;
     }
@@ -24,6 +25,7 @@ module.exports = {
     return word;
   },
 
+  
   todays_date: () => {
     var today = new Date();
     var dd = today.getDate();

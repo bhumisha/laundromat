@@ -16,13 +16,20 @@ router.get('/', (req, res) => {
       'id',
       'order_date',
       'order_type',
-      'order_status'
+      'order_status',
+      'comments',
+      'bags',
+      'laundromat_id',
     ],
     include: [
       {
         model: Customers,
         attributes: ['id', 'name', 'email', 'phone','street_address', 'city', 'state','zipcode'],
       },
+      {
+        model: Laundromats,
+        attributes: ['id', 'name', 'email', 'phone','street_address', 'city', 'state','zipcode'],
+      }
     ]
   })
     .then(dbOrdersData => res.json(dbOrdersData))
@@ -44,6 +51,9 @@ router.get('/:id', (req, res) => {
       'order_date',
       'order_type',
       'order_status',
+      'comments',
+      'bags',
+      'laundromat_id',
     ],
     include: [
       {
@@ -124,7 +134,11 @@ router.get('/:id', (req, res) => {
     attributes: [
       'id',
       'order_date',
+      'order_type',
       'order_status',
+      'comments',
+      'bags',
+      'laundromat_id',
     ],
     include: [
       {

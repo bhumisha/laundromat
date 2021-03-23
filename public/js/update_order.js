@@ -1,12 +1,10 @@
+
 async function editFormHandler(event) {
   event.preventDefault();
+  
 
-  const order_status = document.querySelector('select[name="orderStatus"]').value.trim();
-  
-  
-  const id = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
-  ];
+  const id = document.querySelector('.updateOrder').name;
+  const order_status = document.querySelector('.updateOrder').id;
   
   const response = await fetch(`/api/orders/${id}`, {
     method: 'PUT',
@@ -25,4 +23,4 @@ async function editFormHandler(event) {
   }
 }
 
-document.querySelector('#btnOrderStatusUpdate').addEventListener('click', editFormHandler);
+document.querySelector('.updateOrder').addEventListener('click', editFormHandler);

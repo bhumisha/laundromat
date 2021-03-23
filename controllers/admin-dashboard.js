@@ -16,9 +16,12 @@ router.get('/orders', withAdminAuth,(req, res) => {
     attributes: [
       'id',
       'order_date',
+      'order_type',
       'order_status',
+      'comments',
+      'bags',
+      'laundromat_id',
       'customer_id'
-
     ],
     include: [
       {
@@ -33,11 +36,6 @@ router.get('/orders', withAdminAuth,(req, res) => {
     const orders = dbOrdersData.map(order => order.get({ plain: true }));
     console.log(orders[0]);
 
-    // if(req.session.adminLoggedIn){}
-
-    // else{
-    //   req.session.adminLoggedIn = false;
-    // }
     res.render('orders', {
       orders,
       adminLoggedIn: true
@@ -59,7 +57,11 @@ router.get('/orders/:id', (req, res) => {
     attributes: [
       'id',
       'order_date',
+      'order_type',
       'order_status',
+      'comments',
+      'bags',
+      'laundromat_id',
     ],
     include: [
       {
@@ -86,24 +88,6 @@ router.get('/orders/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
-
-router.get('/login', (req, res) => {
-  if (req.session.adminLoggedIn) {
-    res.redirect('/');
-    return;
-  }
-
-  res.render('login');
-});
-
-// router.get('/signup', (req, res) => {
-//   if (req.session.adminLoggedIn) {
-//     res.redirect('/');
-//     return;
-//   }
-
-//   res.render('signup');
-// });
 
 
 module.exports = router;
