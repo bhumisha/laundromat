@@ -149,7 +149,9 @@ p {
 .overflow-auto {
     height: 600px;
 }
-
+thead{
+    background-color: #e7f1ff;
+}
 @media screen and (max-width: 991px) {
 
     /* ----Hero Rules */

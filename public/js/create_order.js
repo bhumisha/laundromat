@@ -3,8 +3,7 @@ async function createOrderFormHandler(event) {
 
   const order_status = "pick" //document.querySelector('input[name="post-title"]').value.trim();
   const order_date = document.querySelector('#srvcDate').value.trim();
-  const order_type = document.querySelector('#serviceSelect').value.trim();
-  console.log(order_status, '----', order_date, '-----', order_type);
+  const order_type = document.querySelector('#serviceSelect').value
 
   const response = await fetch(`/api/orders/`, {
     method: 'POST',

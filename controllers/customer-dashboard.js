@@ -15,7 +15,8 @@ router.get('/', withAuth, (req, res) => {
     attributes: [
       'id',
       'order_date',
-      'order_status'
+      'order_status',
+      'order_type'
     ],
     include: [
       {
