@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Customers, Laundromats, Locations, Orders } = require('../../models');
+const {withAuth,withAdminAuth} = require('../../utils/auth');
 
 // get all users
 router.get('/', (req, res) => {
@@ -64,6 +65,37 @@ router.post('/', (req, res) => {
       res.status(500).json(err);
     });
 });
+
+
+router.put('/', withAuth, (req, res) => {
+  // expects {username: 'Lernantino',  password: 'password1234'} email,    
+  Customers.update({
+    street_address:req.body.street_address,
+    city:req.body.city,
+    state:req.body.state,
+    zipcode:req.body.zipcode
+  },
+  {
+    where: {
+      id: req.session.customer_id
+    }
+  })
+  .then(dbData => {
+    if (!dbData) {
+      res.status(404).json({ message: 'No post found with this id' });
+      return;
+    }
+    res.json(dbData);
+  })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+
+
+
 
 router.post('/login', (req, res) => {
   // expects { password: 'password1234'}
