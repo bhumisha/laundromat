@@ -17,10 +17,10 @@
                         <form  class="row createOrderForm">
                             <div class="row">
                                 <div class="col-5">
-                                        <p>Default Pickup Address : </p>
+                                        <p>Address : </p>
                                 </div>
                                 <div class="col-7">
-                                    <p class="">{{orders.0.customer.apartment_no}} {{orders.0.customer.street_address}}
+                                    <p class="">{{orders.0.customer.street_address}}
                                         <br>{{orders.0.customer.city}} {{orders.0.customer.state}}
                                         {{orders.0.customer.zip_code}}</p>
                                 </div>
@@ -103,7 +103,7 @@
                     <div class="card-body">
                         <h5 class="card-title">(ORDER_TYPE)</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{format_date this.order_date}}</h6>
-                        <p class="card-text">{{this.customer.apartment_no}} {{this.customer.street_address}}
+                        <p class="card-text"> {{this.customer.street_address}}
                             <br>{{this.customer.city}} {{this.customer.state}} {{this.customer.zip_code}}</p>
                             <p>{{this.order_status}}</p>
                     </div>
