@@ -64,6 +64,12 @@ router.post('/', (req, res) => {
     include: [ Locations ]
   })
     .then(dbData => {
+      if (req.session.loggedIn) {
+        req.session.destroy(() => {
+          res.status(204).end();
+        });
+      }
+
       req.session.save(() => {
         req.session.laundromat_id = dbData.id;
         req.session.laundromat_email = dbData.email;
@@ -95,7 +101,11 @@ router.post('/login', (req, res) => {
       res.status(400).json({ message: 'Incorrect password!' });
       return;
     }
-
+    if (req.session.loggedIn) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    }
     req.session.save(() => {
       req.session.laundromat_id = dbLaundromatData.id;
       req.session.laundromat_email = dbLaundromatData.email;

@@ -53,6 +53,12 @@ router.post('/', (req, res) => {
     zipcode:req.body.zipcode
   })
     .then(dbData => {
+
+      if (req.session.adminLoggedIn) {
+        req.session.destroy(() => {
+          res.status(204).end();
+        });
+      }
       req.session.save(() => {
         req.session.customer_id = dbData.id;
         req.session.email = dbData.email;
@@ -117,7 +123,11 @@ router.post('/login', (req, res) => {
       res.status(400).json({ message: 'Incorrect password!' });
       return;
     }
-
+    if (req.session.adminLoggedIn) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    }
     req.session.save(() => {
       req.session.customer_id = dbCustData.id;
       req.session.customer_email = dbCustData.email;

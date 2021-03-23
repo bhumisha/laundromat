@@ -88,6 +88,13 @@ router.get('/orders/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
+router.get('/login', (req, res) => {
+  if (req.session.adminLoggedIn) {
+    res.redirect('/');
+    return;
+  }
 
+  res.render('login');
+});
 
 module.exports = router;
