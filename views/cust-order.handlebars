@@ -26,9 +26,15 @@
                                 </div>
                             </div>
                             <div class="col-12 py-3">
-                                <input type="date" class="form-select" name="srvcDate" id="srvcDate">
+                                <label for="srvcDate">Date of service:</label>
+                                <input type="date" min="{{todays_date}}" class="form-select" name="srvcDate" id="srvcDate">
                             </div>
                             <div class="col-12">
+                                <label for="bagCount">How many bags?</label>
+                                <input type="number" class="form-select" min='1' max="10" name="bagCount" id="bagCount">
+                            </div>
+                            <div class="col-12 py-3">
+                                <label for="serviceSelect">Service type:</label>
                                 <select class="form-select" id="serviceSelect" required>
                                     <option selected disabled value="">Choose...</option>
                                     <option value="dryClean">Dry Clean</option>
