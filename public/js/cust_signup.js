@@ -1,8 +1,10 @@
 async function signUpFormHandler(event) {
   event.preventDefault();
-
+  pwVerify
   let email = document.querySelector('.signUpEmail').value.trim();
   let password = document.querySelector('.signUpPw').value.trim();
+  let passwordVerify = document.querySelector('#pwVerify').value.trim();
+  let passwordMatch = true;
   let street_address = document.querySelector('.signUpStreetAdd').value.trim();
   let city = document.querySelector('.signUpCity').value.trim();
   let state = document.querySelector('.signUpState').value.trim();
@@ -11,13 +13,19 @@ async function signUpFormHandler(event) {
   if (!email) {
     email = document.querySelector('.signUpEmailM').value.trim();
     password = document.querySelector('.signUpPwM').value.trim();
+    passwordVerify = document.querySelector('#pwVerifyM').value.trim();
     street_address = document.querySelector('.signUpStreetAddM').value.trim();
     city = document.querySelector('.signUpCityM').value.trim();
     state = document.querySelector('.signUpStateM').value.trim();
     zipcode = document.querySelector('.signUpZipM').value.trim();
   }
+  //-------Checks that passwords match on signup-----------
+  if(password !== passwordVerify){
+   alert("Passwords do not match! Please try again");
+   passwordMatch = false;
+  }
 
-  if (email && password) {
+  if (email && passwordMatch) {
     const response = await fetch('/api/cust/', {
       method: 'post',
       body: JSON.stringify({
