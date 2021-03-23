@@ -7,8 +7,8 @@
                 <div class="card-body">
                     <h5 class="card-title">{{this.customer.name}} (ORDER_TYPE)</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{format_date this.order_date}}</h6>
-                    <p class="card-text">{{this.customer.apartment_no}} {{this.customer.street_address}}
-                        <br>{{this.customer.city}} {{this.customer.state}} {{this.customer.zip_code}}</p>
+                    <p class="card-text">{{this.customer.street_address}}
+                        <br>{{this.customer.city}} {{this.customer.state}} {{this.customer.zipcode}}</p>
                     <a href="mailto:{{this.customer.email}}" class="btn btn-outline-secondary card-link">Email</a>
                     <a href="#" id="nextStep{{this.id}}" class="btn btn-success card-link">{{next_step this.order_status}}</a>
                 </div>

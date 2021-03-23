@@ -33,6 +33,7 @@ Customers.init(
         email:
         {
             type: DataTypes.STRING,
+            unique:true,
             validate:{
                 isEmail:true
             }
@@ -46,11 +47,6 @@ Customers.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        apartment_no:
-        {
-            type: DataTypes.INTEGER,
-            allowNull: true
-        },
         city:
         {
             type: DataTypes.STRING,
@@ -61,7 +57,7 @@ Customers.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        zip_code:
+        zipcode:
         {
             type: DataTypes.INTEGER,
             allowNull: false

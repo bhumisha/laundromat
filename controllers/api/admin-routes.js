@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Locations,
-        attributes: ['id', 'street_address', 'apartment_no', 'city', 'state','zip_code']
+        attributes: ['id', 'street_address',  'city', 'state','zipcode']
       },
       {
         model: Orders,
@@ -49,12 +49,25 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // expects {username: 'Lernantino',  password: 'password1234'}
+ 
   Laundromats.create({
+    name:req.body.business,
     email: req.body.email,
     password: req.body.password,
-    name:req.body.name
+    Locations: [{
+      street_address: req.body.street_address,
+      city:  req.body.city,
+      state: req.body.state,
+      zipcode: req.body.zipcode
+    }]
+  },
+  {
+    include: [{
+      association: Laundromats.Locations
+    }]
   })
     .then(dbData => {
+
       req.session.save(() => {
         req.session.laundromat_id = dbData.id;
         req.session.laundromat_email = dbData.email;

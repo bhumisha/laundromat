@@ -64,7 +64,7 @@ router.get('/orders/:id', (req, res) => {
     include: [
       {
         model: Customers,
-        attributes: ['id', 'name', 'email', 'phone','street_address',  'city', 'state','zipcode'],
+        attributes: ['id', 'name', 'email', 'phone','street_address', 'zipcode', 'city', 'state','zipcode'],
       },
     ]
   })

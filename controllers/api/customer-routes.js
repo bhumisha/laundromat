@@ -47,10 +47,9 @@ router.post('/', (req, res) => {
     password: req.body.password,
     name:req.body.email,
     street_address:req.body.street_address,
-    apartment_no:"2122",
     city:req.body.city,
     state:req.body.state,
-    zip_code:req.body.zipcode
+    zipcode:req.body.zipcode
   })
     .then(dbData => {
       req.session.save(() => {
