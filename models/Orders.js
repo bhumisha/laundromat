@@ -28,6 +28,10 @@ Orders.init(
         {
             type: DataTypes.STRING
         },
+        comments:
+        {
+            type: DataTypes.STRING
+        },
         customer_id:{
             type: DataTypes.INTEGER,
             references: {

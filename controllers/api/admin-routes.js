@@ -49,12 +49,11 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // expects {username: 'Lernantino',  password: 'password1234'}
- 
   Laundromats.create({
     name:req.body.business,
     email: req.body.email,
     password: req.body.password,
-    Locations: [{
+    locations: [{
       street_address: req.body.street_address,
       city:  req.body.city,
       state: req.body.state,
@@ -62,12 +61,9 @@ router.post('/', (req, res) => {
     }]
   },
   {
-    include: [{
-      association: Laundromats.Locations
-    }]
+    include: [ Locations ]
   })
     .then(dbData => {
-
       req.session.save(() => {
         req.session.laundromat_id = dbData.id;
         req.session.laundromat_email = dbData.email;

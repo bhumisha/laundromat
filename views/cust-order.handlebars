@@ -14,10 +14,10 @@
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
 
-                        <form  class="row createOrderForm">
+                        <form class="row createOrderForm">
                             <div class="row">
                                 <div class="col-5">
-                                        <p>Address : </p>
+                                    <p>Address : </p>
                                 </div>
                                 <div class="col-7">
                                     <p class="">{{orders.0.customer.street_address}}
@@ -26,14 +26,25 @@
                                 </div>
                             </div>
                             <div class="col-12 py-3">
-                                <input type="date" class="form-select" name="srvcDate" id="srvcDate">
+                                <label for="srvcDate">Date of service:</label>
+                                <input type="date" min="{{todays_date}}" class="form-select" name="srvcDate"
+                                    id="srvcDate">
                             </div>
                             <div class="col-12">
+                                <label for="bagCount">How many bags?</label>
+                                <input type="number" class="form-select" min='1' max="10" name="bagCount" id="bagCount">
+                            </div>
+                            <div class="col-12 py-3">
+                                <label for="serviceSelect">Service type:</label>
                                 <select class="form-select" id="serviceSelect" required>
                                     <option selected disabled value="">Choose...</option>
                                     <option value="dryClean">Dry Clean</option>
                                     <option value="washNFold">Wash & Fold</option>
                                 </select>
+                            </div>
+                             <div class="col-12">
+                                <label for="comment">Comments</label>
+                                <textarea type="text" class="form-control"  name="comment" id="comment"></textarea>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-success my-3" type="submit">Confirm</button>
@@ -94,24 +105,48 @@
             </div>
         </div>
     </div>
-    <div class="container p-3 col-10 col-md-6">
-        <div class="row row-cols-1 " align="center">
-            <div class="overflow-auto">
-            {{#each orders}}
-            <div class="col mt-3 mx-auto">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">(ORDER_TYPE)</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{format_date this.order_date}}</h6>
-                        <p class="card-text"> {{this.customer.street_address}}
-                            <br>{{this.customer.city}} {{this.customer.state}} {{this.customer.zipcode}}</p>
-                            <p>{{this.order_status}}</p>
-                    </div>
-                </div>
-            </div>
-            {{/each}}
-        </div></div>
+
+    <div class="container mt-4 p-3 col-10 col-md-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Order Type</th>
+                    <th scope="col">Order Status</th>
+                </tr>
+            </thead>
+            <tbody class="table-light">
+                {{#each orders}}
+                <tr>
+                    <td>{{format_date this.order_date}}</td>
+                    <td>{{this.order_type}}</td>
+                    <td>{{this.order_status}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+
     </div>
 </div>
 
 <script src="/js/create_order.js"></script>
+
+
+
+{{!-- <div class="row row-cols-1 " align="center">
+    <div class="overflow-auto">
+        {{#each orders}}
+        <div class="col mt-3 mx-auto">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">(ORDER_TYPE)</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{format_date this.order_date}}</h6>
+                    <p class="card-text"> {{this.customer.street_address}}
+                        <br>{{this.customer.city}} {{this.customer.state}} {{this.customer.zip_code}}</p>
+                    <p>{{this.order_status}}</p>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div> --}}
