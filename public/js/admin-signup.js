@@ -1,41 +1,49 @@
 async function signUpFormHandler(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    
-//   ADDED FIELD FOR BUSINESS NAME 
-    const business = document.querySelector('.signUpName').value.trim();
-    const email = document.querySelector('.signUpEmail').value.trim();
-    const password = document.querySelector('.signUpPw').value.trim();
-    const street_address = document.querySelector('.signUpStreetAdd').value.trim();
-    const city = document.querySelector('.signUpCity').value.trim();
-    const state = document.querySelector('.signUpState').value.trim();
-    const zipcode = document.querySelector('.signUpZip').value.trim();
-    console.log(email,password,street_address);
 
-// ---------I DIDNT TOUCH ANYTHING BELOW THIS, JUST COPY& PASTE FROM CUSTOMER SIGN UP--BEN
-    if (email && password) {
-      const response = await fetch('/api/cust/', {
-        method: 'post',
-        body: JSON.stringify({
-            email,
-            password,
-            street_address,
-            city,
-            state,
-            zipcode
-        }),
-        headers: { 'Content-Type': 'application/json' }
-      });
-  
-      if (response.ok) {
-        document.location.replace('/cust'); //IT will display - Customers's Orders.
-      } else {
-        alert(response.statusText);
+  let business = document.querySelector('.signUpName').value.trim();
+  let email = document.querySelector('.signUpEmail').value.trim();
+  let password = document.querySelector('.signUpPw').value.trim();
+  let street_address = document.querySelector('.signUpStreetAdd').value.trim();
+  let city = document.querySelector('.signUpCity').value.trim();
+  let state = document.querySelector('.signUpState').value.trim();
+  let zipcode = document.querySelector('.signUpZip').value.trim();
+
+  if (!business) {
+    business = document.querySelector('.signUpNameM').value.trim();
+    email = document.querySelector('.signUpEmailM').value.trim();
+    password = document.querySelector('.signUpPwM').value.trim();
+    street_address = document.querySelector('.signUpStreetAddM').value.trim();
+    city = document.querySelector('.signUpCityM').value.trim();
+    state = document.querySelector('.signUpStateM').value.trim();
+    zipcode = document.querySelector('.signUpZipM').value.trim();
+  }
+
+  if (email && password) {
+    const response = await fetch('/api/cust/', {
+      method: 'post',
+      body: JSON.stringify({
+        business,
+        email,
+        password,
+        street_address,
+        city,
+        state,
+        zipcode
+      }),
+      headers: {
+        'Content-Type': 'application/json'
       }
+    });
+
+    if (response.ok) {
+      document.location.replace('/admin'); //IT will display - Customers's Orders.
+    } else {
+      alert(response.statusText);
     }
   }
-//   -------I CHANGED THIS SO IT WORKS ----BEN
-  document.querySelector('.signUpForm').addEventListener('submit', signUpFormHandler);
-  
-  
-  
+}
+
+document.querySelector('.signUpForm').addEventListener('submit', signUpFormHandler);
+document.querySelector('.signUpFormM').addEventListener('submit', signUpFormHandler);

@@ -7,6 +7,7 @@ VALUES
 ('Mike', 'test123', 'mike@email.com', 'Market', '2800', 'San Francisco' , 'CA' , '94109'),
 ('April', 'test123', 'April@email.com', 'Castro', '400', 'San Francisco' , 'CA' , '94109');
 
-INSERT INTO `laundromat_db`.`locations` (`street_address`, `apt_number`, `city`, `state`, `zip_code`,`laundromat_id`) VALUES ('Blaco Street', '56', 'Fremont', 'CA', '94538','1');
+INSERT INTO `laundromat_db`.`locations` (`street_address`, `city`, `state`, `zip_code`,`laundromat_id`) VALUES ('Blaco Street', 'Fremont', 'CA', '94538','1');
 
-INSERT INTO `laundromat_db`.`orders` (`order_date`, `order_status`, `order_type`,`customer_id`,`laundromat_id`) VALUES ('03/12/21', 'Pick','Wash' '1','1');
+INSERT INTO `laundromat_db`.`orders` (`order_date`, `order_status`, `order_type`,`customer_id`,`laundromat_id`) VALUES ('2021-03-24', 'Pick','Wash', '1','1');
+
