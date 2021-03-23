@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Customers, Laundromats, Locations, Orders } = require('../../models');
+const {withAuth,withAdminAuth} = require('../../utils/auth');
 
 // get all users
 router.get('/', (req, res) => {
@@ -47,12 +48,17 @@ router.post('/', (req, res) => {
     password: req.body.password,
     name:req.body.email,
     street_address:req.body.street_address,
-    apartment_no:"2122",
     city:req.body.city,
     state:req.body.state,
-    zip_code:req.body.zipcode
+    zipcode:req.body.zipcode
   })
     .then(dbData => {
+
+      if (req.session.adminLoggedIn) {
+        req.session.destroy(() => {
+          res.status(204).end();
+        });
+      }
       req.session.save(() => {
         req.session.customer_id = dbData.id;
         req.session.email = dbData.email;
@@ -65,6 +71,37 @@ router.post('/', (req, res) => {
       res.status(500).json(err);
     });
 });
+
+
+router.put('/', withAuth, (req, res) => {
+  // expects {username: 'Lernantino',  password: 'password1234'} email,    
+  Customers.update({
+    street_address:req.body.street_address,
+    city:req.body.city,
+    state:req.body.state,
+    zipcode:req.body.zipcode
+  },
+  {
+    where: {
+      id: req.session.customer_id
+    }
+  })
+  .then(dbData => {
+    if (!dbData) {
+      res.status(404).json({ message: 'No post found with this id' });
+      return;
+    }
+    res.json(dbData);
+  })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+
+
+
 
 router.post('/login', (req, res) => {
   // expects { password: 'password1234'}
@@ -86,7 +123,11 @@ router.post('/login', (req, res) => {
       res.status(400).json({ message: 'Incorrect password!' });
       return;
     }
-
+    if (req.session.adminLoggedIn) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    }
     req.session.save(() => {
       req.session.customer_id = dbCustData.id;
       req.session.customer_email = dbCustData.email;

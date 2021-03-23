@@ -1,6 +1,6 @@
 async function signUpFormHandler(event) {
   event.preventDefault();
-  pwVerify
+  
   let email = document.querySelector('.signUpEmail').value.trim();
   let password = document.querySelector('.signUpPw').value.trim();
   let passwordVerify = document.querySelector('#pwVerify').value.trim();

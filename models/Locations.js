@@ -17,11 +17,6 @@ Locations.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        apartment_no:
-        {
-            type: DataTypes.INTEGER,
-            allowNull: true
-        },
         city:
         {
             type: DataTypes.STRING,
@@ -32,7 +27,7 @@ Locations.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        zip_code:
+        zipcode:
         {
             type: DataTypes.INTEGER,
             allowNull: false

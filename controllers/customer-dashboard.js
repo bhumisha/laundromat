@@ -15,13 +15,16 @@ router.get('/', withAuth, (req, res) => {
     attributes: [
       'id',
       'order_date',
+      'order_type',
       'order_status',
-      'order_type'
+      'comments',
+      'bags',
+      'laundromat_id',
     ],
     include: [
       {
         model: Customers,
-        attributes: ['id', 'name', 'email', 'phone','street_address', 'apartment_no', 'city', 'state','zip_code'],
+        attributes: ['id', 'name', 'email', 'phone','street_address', 'city', 'state','zipcode'],
       }
       
     ]

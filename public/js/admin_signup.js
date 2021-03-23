@@ -28,9 +28,8 @@ async function signUpFormHandler(event) {
     alert("Passwords do not match! Please try again");
     passwordMatch = false;
   }
-
   if (email && passwordMatch) {
-    const response = await fetch('/api/cust/', {
+    const response = await fetch('/api/admin/', {
       method: 'post',
       body: JSON.stringify({
         business,
@@ -47,7 +46,7 @@ async function signUpFormHandler(event) {
     });
 
     if (response.ok) {
-      document.location.replace('/admin'); //IT will display - Customers's Orders.
+      document.location.replace('/admin/orders/'); //IT will display - All the 's Orders.
     } else {
       alert(response.statusText);
     }

@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Locations,
-        attributes: ['id', 'street_address', 'apartment_no', 'city', 'state','zip_code']
+        attributes: ['id', 'street_address',  'city', 'state','zipcode']
       },
       {
         model: Orders,
@@ -50,11 +50,26 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   // expects {username: 'Lernantino',  password: 'password1234'}
   Laundromats.create({
+    name:req.body.business,
     email: req.body.email,
     password: req.body.password,
-    name:req.body.name
+    locations: [{
+      street_address: req.body.street_address,
+      city:  req.body.city,
+      state: req.body.state,
+      zipcode: req.body.zipcode
+    }]
+  },
+  {
+    include: [ Locations ]
   })
     .then(dbData => {
+      if (req.session.loggedIn) {
+        req.session.destroy(() => {
+          res.status(204).end();
+        });
+      }
+
       req.session.save(() => {
         req.session.laundromat_id = dbData.id;
         req.session.laundromat_email = dbData.email;
@@ -80,13 +95,17 @@ router.post('/login', (req, res) => {
       return;
     }
 
-    //const validPassword = dbLaundromatData.checkPassword(req.body.password);
-    const validPassword = dbLaundromatData.password === req.body.password?true:false;
+    const validPassword = dbLaundromatData.checkPassword(req.body.password);
+    //const validPassword = dbLaundromatData.password === req.body.password?true:false;
     if (!validPassword) {
       res.status(400).json({ message: 'Incorrect password!' });
       return;
     }
-
+    if (req.session.loggedIn) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    }
     req.session.save(() => {
       req.session.laundromat_id = dbLaundromatData.id;
       req.session.laundromat_email = dbLaundromatData.email;

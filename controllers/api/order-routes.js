@@ -16,13 +16,20 @@ router.get('/', (req, res) => {
       'id',
       'order_date',
       'order_type',
-      'order_status'
+      'order_status',
+      'comments',
+      'bags',
+      'laundromat_id',
     ],
     include: [
       {
         model: Customers,
-        attributes: ['id', 'name', 'email', 'phone','street_address', 'apartment_no', 'city', 'state','zip_code'],
+        attributes: ['id', 'name', 'email', 'phone','street_address', 'city', 'state','zipcode'],
       },
+      {
+        model: Laundromats,
+        attributes: ['id', 'name', 'email', 'phone','street_address', 'city', 'state','zipcode'],
+      }
     ]
   })
     .then(dbOrdersData => res.json(dbOrdersData))
@@ -44,11 +51,14 @@ router.get('/:id', (req, res) => {
       'order_date',
       'order_type',
       'order_status',
+      'comments',
+      'bags',
+      'laundromat_id',
     ],
     include: [
       {
         model: Customers,
-        attributes: ['id', 'name', 'email', 'phone','street_address', 'apartment_no', 'city', 'state','zip_code'],
+        attributes: ['id', 'name', 'email', 'phone','street_address',  'city', 'state','zipcode'],
       },
     ]
   })
@@ -68,13 +78,15 @@ router.get('/:id', (req, res) => {
 
 //CREATE CUSTOMER ORDER -> IT WILL GET CALLED FROM CREATE_ORDER.JS FROM JS
 router.post('/', withAuth, (req, res) => {
-  // expects {order_date: 'date', order_status: 'new', customer_id: 1}
+  // expects {order_date: 'date', order_status: 'new', customer_id: 1} //order_date,
   console.log("req.session.customer_id" , req.session.customer_id);
   console.log(req);
   Orders.create({
     order_date: req.body.order_date,
     order_status: req.body.order_status,
     order_type:req.body.order_type,
+    bags:req.body.bags,
+    comments:req.body.comments,
     customer_id: req.session.customer_id,
     laundromat_id : "1"
   })
@@ -122,12 +134,16 @@ router.get('/:id', (req, res) => {
     attributes: [
       'id',
       'order_date',
+      'order_type',
       'order_status',
+      'comments',
+      'bags',
+      'laundromat_id',
     ],
     include: [
       {
         model: Customers,
-        attributes: ['id', 'name', 'email', 'phone','street_address', 'apartment_no', 'city', 'state','zip_code'],
+        attributes: ['id', 'name', 'email', 'phone','street_address',  'city', 'state','zipcode'],
       },
     ]
   })

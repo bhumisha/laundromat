@@ -22,7 +22,7 @@
                                 <div class="col-7">
                                     <p class="">{{orders.0.customer.street_address}}
                                         <br>{{orders.0.customer.city}} {{orders.0.customer.state}}
-                                        {{orders.0.customer.zip_code}}</p>
+                                        {{orders.0.customer.zipcode}}</p>
                                 </div>
                             </div>
                             <div class="col-12 py-3">
@@ -42,6 +42,10 @@
                                     <option value="washNFold">Wash & Fold</option>
                                 </select>
                             </div>
+                             <div class="col-12">
+                                <label for="comment">Comments</label>
+                                <textarea type="text" class="form-control"  name="comment" id="comment"></textarea>
+                            </div>
                             <div class="col-12">
                                 <button class="btn btn-success my-3" type="submit">Confirm</button>
                             </div>
@@ -60,24 +64,24 @@
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <form class="row g-3 needs-validation" novalidate>
+                        <form class="row g-3 needs-validation updateAddressForm"  novalidate>
                             <div class="col-md-8">
-                                <label for="validationCustom03" class="form-label">Street Address</label>
-                                <input type="text" class="form-control" id="validationCustom03" required>
+                                <label for="streetAdd" class="form-label">Street Address</label>
+                                <input type="text" class="form-control" id="streetAdd" name="streetAdd" required>
                                 <div class="invalid-feedback">
                                     Please provide a valid street address.
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label for="validationCustom03" class="form-label">City</label>
-                                <input type="text" class="form-control" id="validationCustom03" required>
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" class="form-control" id="city" name="city" required>
                                 <div class="invalid-feedback">
                                     Please provide a valid city.
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <label for="validationCustom04" class="form-label">State</label>
-                                <select class="form-select" id="validationCustom04" required>
+                                <label for="state" class="form-label">State</label>
+                                <select class="form-select" id="state" name="state" required>
                                     <option selected disabled value="">Choose...</option>
                                     {{>states}}
                                 </select>
@@ -86,8 +90,8 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <label for="validationCustom05" class="form-label">Zip</label>
-                                <input type="text" class="form-control" id="validationCustom05" required>
+                                <label for="zip" class="form-label">Zip</label>
+                                <input type="text" class="form-control" id="zip" name="zip" required>
                                 <div class="invalid-feedback">
                                     Please provide a valid zip.
                                 </div>
@@ -101,6 +105,7 @@
             </div>
         </div>
     </div>
+
     <div class="container mt-4 p-3 col-10 col-md-6">
         <table class="table">
             <thead>
@@ -120,10 +125,12 @@
                 {{/each}}
             </tbody>
         </table>
+
     </div>
 </div>
 
 <script src="/js/create_order.js"></script>
+<script src="/js/update_address.js"></script>
 
 
 
