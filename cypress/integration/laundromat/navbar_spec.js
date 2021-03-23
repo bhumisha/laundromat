@@ -1,5 +1,6 @@
 describe('navbar tests', () => {
   beforeEach(() => {
+    cy.clearCookies();
     // '/' = baseUrl set in cypress.json - currently set to localhost:3000
     cy.visit('/');
   });
