@@ -42,7 +42,7 @@ async function updateCustAddressFormHandler(event) {
     window.location.toString().split('/').length - 1
   ];
   
-debugger;
+
   const response = await fetch(`/api/cust/`, {
   method: 'put',
   body: JSON.stringify({

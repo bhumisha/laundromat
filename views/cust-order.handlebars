@@ -20,9 +20,9 @@
                                     <p>Address : </p>
                                 </div>
                                 <div class="col-7">
-                                    <p class="">{{orders.0.customer.street_address}}
-                                        <br>{{orders.0.customer.city}} {{orders.0.customer.state}}
-                                        {{orders.0.customer.zipcode}}</p>
+                                    <p class="">{{orders.street_address}}
+                                        <br>{{orders.city}} {{orders.state}}
+                                        {{orders.zipcode}}</p>
                                 </div>
                             </div>
                             <div class="col-12 py-3">
@@ -116,7 +116,7 @@
                 </tr>
             </thead>
             <tbody class="table-light">
-                {{#each orders}}
+                {{#each orders.orders}}
                 <tr>
                     <td>{{format_date this.order_date}}</td>
                     <td>{{this.order_type}}</td>
