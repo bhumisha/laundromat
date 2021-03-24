@@ -126,39 +126,40 @@ router.put('/', withAuth, (req, res) => {
 router.post('/login', (req, res) => {
   // expects { password: 'password1234'}
   Customers.findOne({
-    where: {
-      email: req.body.email
-    }
-  }).then(dbCustData => {
+      where: {
+        email: req.body.email
+      }
+    })
+    .then(dbCustData => {
 
-    if (!dbCustData) {
-      res.status(400).json({
-        message: 'No Customer with that email!'
-      });
-      return;
-    }
+      if (!dbCustData) {
+        res.status(400).json({
+          message: 'No Customer with that email!'
+        });
+        return;
+      }
 
-    const validPassword = dbCustData.checkPassword(req.body.password);
-    // const validPassword = dbCustData.password === req.body.password?true:false;
+      const validPassword = dbCustData.checkPassword(req.body.password);
+      // const validPassword = dbCustData.password === req.body.password?true:false;
 
-    if (!validPassword) {
-      res.status(400).json({
-        message: 'Incorrect password!'
-      });
-      return;
-    }
+      if (!validPassword) {
+        res.status(400).json({
+          message: 'Incorrect password!'
+        });
+        return;
+      }
 
-    req.session.save(() => {
-      req.session.customer_id = dbCustData.id;
-      req.session.customer_email = dbCustData.email;
-      req.session.loggedIn = true;
+      req.session.save(() => {
+        req.session.customer_id = dbCustData.id;
+        req.session.customer_email = dbCustData.email;
+        req.session.loggedIn = true;
 
-      res.json({
-        customer: dbCustData,
-        message: 'You are now logged in!'
+        res.json({
+          customer: dbCustData,
+          message: 'You are now logged in!'
+        });
       });
     });
-  });
 });
 
 router.post('/login', function (req, res) {
@@ -187,6 +188,8 @@ router.post('/login', function (req, res) {
     });
   })(req, res);
 });
+
+
 
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {

@@ -3,29 +3,10 @@ const {
   Laundromats,
   Locations
 } = require('../models');
-
-let cities = [];
-let states = [];
-
-const sortCity = (location) =>{
-  for(i=0;i<location.length;i++){
-    let city = (location[i].locations[0].city);
-    if(!cities.includes(city)){
-      cities.push(city);
-    }
-  }
-  console.log(cities);
-  // console.log(cities.sort());
-}
-const sortState = (location) =>{
-  for(i=0;i<location.length;i++){
-    let state = (location[i].locations[0].state);
-    if(!states.includes(state)){
-      states.push(state);
-    }
-  }
-  console.log(states);
-}
+const {
+  sortCity,
+  sortState
+} = require('../utils/apiHelper');
 
 router.get('/', function (req, res) {
   Laundromats.findAll({
@@ -43,8 +24,8 @@ router.get('/', function (req, res) {
       const locations = dbLocationData.map(order => order.get({
         plain: true
       }));
-      sortCity(locations)
-      sortState(locations)
+      let cities = sortCity(locations)
+      let states = sortState(locations)
 
       res.render('home', {
         cities,
