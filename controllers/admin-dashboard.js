@@ -97,4 +97,22 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+
+router.post('/logout', (req, res) => {
+  if (req.session.adminLoggedIn) {
+
+      req.session.destroy(() => {
+        console.log("Inside if destroy")
+        res.render('login');
+      });
+      console.log("outside if destroy")
+  } 
+  else {
+    console.log("else")
+    res.status(404).end();
+  }
+  
+});
+
+
 module.exports = router;

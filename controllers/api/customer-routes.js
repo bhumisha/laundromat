@@ -142,6 +142,8 @@ router.put('/', withAuth, (req, res) => {
 //   });
 // });
 
+
+//This is used for customer authentication using passport.
     router.post('/login', function (req, res) {
       /* look at the 2nd parameter to the below call */
       passport.authenticate('local', function (err, dbCustData, info) {
