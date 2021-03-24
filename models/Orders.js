@@ -20,7 +20,15 @@ Orders.init(
         {
             type: DataTypes.STRING
         },
+        bags:{
+            type:DataTypes.INTEGER,
+            defaultValue:1
+        },
         order_status:
+        {
+            type: DataTypes.STRING
+        },
+        comments:
         {
             type: DataTypes.STRING
         },

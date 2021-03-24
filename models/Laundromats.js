@@ -21,6 +21,7 @@ Laundromats.init(
         name: 
         {
             type: DataTypes.STRING,
+            unique:true,
             allowNull: false
         },
         password: {
@@ -33,6 +34,7 @@ Laundromats.init(
         email:
         {
             type: DataTypes.STRING,
+            unique:true,
             validate:{
                 isEmail:true
             }

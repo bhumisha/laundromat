@@ -5,16 +5,19 @@
         <div class="col mt-3">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">{{this.customer.name}} (ORDER_TYPE)</h5>
+                    <h5 class="card-title">{{this.customer.name}} ({{this.order_type}})</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{format_date this.order_date}}</h6>
-                    <p class="card-text">{{this.customer.apartment_no}} {{this.customer.street_address}}
-                        <br>{{this.customer.city}} {{this.customer.state}} {{this.customer.zip_code}}</p>
+                    <h6 class="card-subtitle mb-2 text-muted">Comment : {{ this.comments}}</h6>
+                    <p class="card-text">{{this.customer.street_address}}
+                        <br>{{this.customer.city}} {{this.customer.state}} {{this.customer.zipcode}}</p>
                     <a href="mailto:{{this.customer.email}}" class="btn btn-outline-secondary card-link">Email</a>
-                    <a href="#" id="nextStep{{this.id}}" class="btn btn-success card-link">{{next_step this.order_status}}</a>
+                    <a href="#" id={{next_step this.order_status}}  name="{{this.id}}"  class="btn btn-success card-link updateOrder">{{this.order_status}}</a>
+                    {{!-- here button id will give you next order status and name will give you id. --}}
                 </div>
             </div>
         </div>
         {{/each}}
 </div>
 
-<script src="/js/edit-order.js"></script>
+<script src="/js/update_order.js"></script>
+

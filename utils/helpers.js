@@ -6,21 +6,39 @@ module.exports = {
   },
 
   next_step: word => {
+    word = word.toLowerCase();
     switch (word) {
-      case 'Pick':
-        word = 'Accept Order'
+      case 'pick':
+        word = 'Accepted'
         break;
-      case 'Accepted':
+      case 'accepted':
         word = 'Cleaning'
         break;
-      case 'Cleaning':
+      case 'cleaning':
         word = 'Delivering'
         break;
-      case 'Delivering':
+      case 'delivering':
         word = 'Complete'
         break;
     }
 
     return word;
+  },
+
+  
+  todays_date: () => {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+      dd = '0' + dd
+    }
+    if (mm < 10) {
+      mm = '0' + mm
+    }
+
+    today = yyyy + '-' + mm + '-' + dd;
+    return today;
   }
 };
