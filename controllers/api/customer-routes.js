@@ -110,13 +110,14 @@ router.put('/', withAuth, (req, res) => {
 
 
 
-router.post('/login', (req, res) => {
-  // expects { password: 'password1234'}
-  Customers.findOne({
-    where: {
-      email: req.body.email
-    }
-  }).then(dbCustData => {
+// router.post('/login', (req, res) => {
+//   // expects { password: 'password1234'}
+//     Customers.findOne({
+//       where: {
+//         email: req.body.email
+//       }
+//     })
+//       .then(dbCustData => {
 
 //     if (!dbCustData) {
 //       res.status(400).json({ message: 'No Customer with that email!' });
@@ -141,29 +142,31 @@ router.post('/login', (req, res) => {
 //   });
 // });
 
-router.post('/login', function (req, res) {
-  /* look at the 2nd parameter to the below call */
-  passport.authenticate('local', function (err, dbCustData, info) {
-    if (err) {
-      return res.status(500).send();
-    }
-    if (!dbCustData && info) {
-      return res.status(401).send(info);
-    }
-    if (req.session.adminLoggedIn) {
-      req.session.destroy(() => {
-        res.status(204).end();
-      });
-    }
-    req.session.save(() => {
-      req.session.customer_id = dbCustData.id;
-      req.session.customer_email = dbCustData.email;
-      req.session.loggedIn = true;
+    router.post('/login', function (req, res) {
+      /* look at the 2nd parameter to the below call */
+      passport.authenticate('local', function (err, dbCustData, info) {
+        if (err) {
+          return res.status(500).send();
+        }
+        if (!dbCustData && info) {
+          return res.status(401).send(info);
+        }
+        if (req.session.adminLoggedIn) {
+          req.session.destroy(() => {
+            res.status(204).end();
+          });
+        }
+        req.session.save(() => {
+          req.session.customer_id = dbCustData.id;
+          req.session.customer_email = dbCustData.email;
+          req.session.loggedIn = true;
 
-      res.json({ customer: dbCustData, message: 'You are now logged in!' });
+          res.json({ customer: dbCustData, message: 'You are now logged in!' });
+        });
+      })(req, res);
     });
-  })(req, res);
-});
+  
+
 
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
