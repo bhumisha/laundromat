@@ -2,11 +2,12 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
+const passport = require('./config/passport');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const sequelize = require("./config/connection");
+const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
@@ -14,15 +15,25 @@ const sess = {
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
+    db: sequelize,
   }),
   rolling: true, // <-- Set `rolling` to `true`
-  // cookie: {  
+  // cookie: {
   //     maxAge: //10000 //10 sec.
   // }
 };
 
-app.use(session(sess));
+// app.use(session(sess));
+// We need to use sessions to keep track of our user's login status
+app.use(
+  session({
+    secret: 'Super secret secret',
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Helpers contains util files which have generic format functions.
 const helpers = require('./utils/helpers');
@@ -46,14 +57,13 @@ app.use(require('./controllers/'));
 /**
  *  Connect to DB server and Database.
  * The Sequelize sync taking the models and connecting / map them to database Table and if they dont find table, it will create it for you.
- * {force: false} in the .sync() method. This doesn't have to be included, but if it were set to true, 
+ * {force: false} in the .sync() method. This doesn't have to be included, but if it were set to true,
  * it would drop and re-create all of the database tables on startup (DROP TABLE IF EXISTS)
  * This is great for when we make changes to the Sequelize models,
  * as the database would need a way to understand that something has changed.
  * We'll have to do that a few times throughout this project,
- * so it's best to keep the {force: false}.   
-**/
+ * so it's best to keep the {force: false}.
+ **/
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log("Now listening to port " + PORT));
+  app.listen(PORT, () => console.log('Now listening to port ' + PORT));
 });
-
