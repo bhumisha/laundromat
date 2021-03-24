@@ -88,7 +88,7 @@ router.post('/', withAuth, (req, res) => {
     bags:req.body.bags,
     comments:req.body.comments,
     customer_id: req.session.customer_id,
-    laundromat_id : "1"
+    laundromat_id : "5"
   })
   .then(dbOrdersData => res.json(dbOrdersData))
   .catch(err => {

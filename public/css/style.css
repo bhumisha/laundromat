@@ -133,7 +133,9 @@ p {
     align-items: center;
     padding-top: 18%;
 }
-
+.adminHead{
+    width: 100%;
+}
 /* --------------dashboard------- */
 .dashHero {
     background-image: url(../images/shirts.jpeg);

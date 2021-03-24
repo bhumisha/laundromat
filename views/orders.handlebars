@@ -1,24 +1,29 @@
 <div class="dashHero"></div>
 <div class="container p-3">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-        {{#each orders}}
-        <div class="col mt-3">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{{this.customer.name}} ({{this.order_type}})</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{format_date this.order_date}}</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Comment : {{ this.comments}}</h6>
-                    <p class="card-text">{{this.customer.street_address}}
-                        <br>{{this.customer.city}} {{this.customer.state}} {{this.customer.zipcode}}</p>
-                    <a href="mailto:{{this.customer.email}}" class="btn btn-outline-secondary card-link">Email</a>
-                    
-                    <a href="" id="{{this.id}}" name={{next_step this.order_status}}  class="updateOrderForm btn btn-success card-link ">{{this.order_status}}</a>
-                    {{!-- here button id will give you next order status and name will give you id. --}}
+    <h1 align="center" class="adminHead">Your Customer Orders:</h1>
+    {{#unless orders}}
+    <h3 align="center">No orders yet!</h3>
+    {{/unless}}
+    <div class="overflow-auto">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+            {{#each orders}}
+            <div class="col mt-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.customer.name}} ({{this.order_type}})</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{format_date this.order_date}}</h6>
+                        <p class="card-text">{{this.customer.street_address}}
+                            <br>{{this.customer.city}} {{this.customer.state}} {{this.customer.zipcode}}</p>
+                        <h6 class="card-subtitle mb-2 text-muted">Comment : {{ this.comments}}</h6>
+                        <a href="mailto:{{this.customer.email}}" class="btn btn-outline-secondary card-link">Email</a>
+                        <a href="" id="{{this.id}}" name={{next_step this.order_status}}
+                            class="updateOrderForm btn btn-success card-link ">{{this.order_status}}</a>
+                        {{!-- here button id will give you next order status and name will give you id. --}}
+                    </div>
                 </div>
             </div>
+            {{/each}}
         </div>
-        {{/each}}
-</div>
+    </div>
 
-<script src="/js/update_order.js"></script>
-
+    <script src="/js/update_order.js"></script>
