@@ -1,13 +1,12 @@
 module.exports = {
-  //Date format
   format_date: date => {
     return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(
       date
     ).getFullYear()}`;
   },
 
-  //This is used to get next order status.
-  next_step = word => {
+
+  next_step: word => {
     switch (word) {
       case 'Pending':
         word = 'Accepted'
@@ -29,8 +28,6 @@ module.exports = {
     return word;
   },
   
-
-  //This is used to get date from date picker.
   todays_date: () => {
     var today = new Date();
     var dd = today.getDate();
