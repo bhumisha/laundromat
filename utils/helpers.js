@@ -9,19 +9,19 @@ module.exports = {
   next_step: word => {
     switch (word) {
       case 'Pending':
-        word = 'Accepted'
+        word = 'danger'
         break;
       case 'Accepted':
-        word = 'Cleaning'
+        word = 'warning'
         break;
       case 'Cleaning':
-        word = 'Delivering'
+        word = 'info'
         break;
       case 'Delivering':
-        word = 'Complete'
+        word = 'success'
         break;
         case 'Complete':
-        word = 'Pending'
+        word = 'light'
         break;
     }
   

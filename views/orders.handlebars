@@ -10,7 +10,7 @@
             <div class="col mt-3">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">{{this.customer.name}} ({{this.order_type}})</h5>
+                        <h5 class="card-title">{{this.customer.name}} <br> ({{this.order_type}})</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{format_date this.order_date}}</h6>
                         <p class="card-text">{{this.customer.street_address}}
                             <br>{{this.customer.city}} {{this.customer.state}} {{this.customer.zipcode}}</p>
@@ -23,8 +23,8 @@
                         {{/if}}
                         <a href="mailto:{{this.customer.email}}?subject=SimpleSuds - your order ({{format_date this.order_date}}) update"
                             class="btn btn-outline-secondary card-link">Email</a>
-                        <a href="#" id="{{this.id}}" name={{next_step this.order_status}}
-                            class="updateOrderForm btn btn-success card-link "
+                        <a href="#" id="{{this.id}}" name={{this.order_status}}
+                            class="updateOrderForm btn btn-{{next_step this.order_status}} card-link"
                             onclick="changeStatus(this.id)">{{this.order_status}}</a>
                         {{!-- here button id will give you next order status and name will give you id. --}}
                     </div>
