@@ -1,5 +1,4 @@
 async function loginFormHandler(event) {
-  console.log('submit');
   event.preventDefault();
 
 

@@ -1,7 +1,7 @@
 async function createOrderFormHandler(event) {
   event.preventDefault();
 
-  const order_status = "pick" //document.querySelector('input[name="post-title"]').value.trim();
+  const order_status = "Pending";
   const order_date = document.querySelector('#srvcDate').value.trim();
   const order_type = document.querySelector('#serviceSelect').value
   const bags = document.querySelector('#bagCount').value
