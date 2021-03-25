@@ -12,6 +12,9 @@ router.get('/', (req, res) => {
     where: {
       customer_id: req.session.customer_id
     },
+    order: [
+      ['order_date', 'ASC']
+    ],
     attributes: [
       'id',
       'order_date',
