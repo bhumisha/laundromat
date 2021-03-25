@@ -80,7 +80,7 @@ router.get('/:id', (req, res) => {
 router.post('/', withAuth, (req, res) => {
   // expects {order_date: 'date', order_status: 'new', customer_id: 1} //order_date,
   console.log("req.session.customer_id" , req.session.customer_id);
-  console.log(req);
+  console.log(req.body.order_date);
   Orders.create({
     order_date: req.body.order_date,
     order_status: req.body.order_status,
@@ -88,7 +88,7 @@ router.post('/', withAuth, (req, res) => {
     bags:req.body.bags,
     comments:req.body.comments,
     customer_id: req.session.customer_id,
-    laundromat_id : "5"
+    laundromat_id : "1"
   })
   .then(dbOrdersData => res.json(dbOrdersData))
   .catch(err => {
