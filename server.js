@@ -18,9 +18,9 @@ const sess = {
     db: sequelize,
   }),
   rolling: true, // <-- Set `rolling` to `true`
-  // cookie: {
-  //     maxAge: //10000 //10 sec.
-  // }
+  cookie: {
+      maxAge:30000 //30 sec.
+  }
 };
 
 // app.use(session(sess));
