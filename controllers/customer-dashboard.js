@@ -99,7 +99,7 @@ router.get('/', withAuth, (req, res) => {
       orders = dbData.get({
         plain: true
       });
-      // console.log("Orders From Cust", orders);
+      console.log("Orders From Cust", orders);
 
       res.render('cust-order', {
         orders,

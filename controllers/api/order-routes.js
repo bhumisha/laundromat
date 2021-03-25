@@ -103,8 +103,13 @@ router.get('/:id', (req, res) => {
 //CREATE CUSTOMER ORDER -> IT WILL GET CALLED FROM CREATE_ORDER.JS FROM JS
 router.post('/', withAuth, (req, res) => {
   // expects {order_date: 'date', order_status: 'new', customer_id: 1} //order_date,
+<<<<<<< HEAD
   console.log('req.session.customer_id', req.session.customer_id);
   console.log(req);
+=======
+  console.log("req.session.customer_id" , req.session.customer_id);
+  console.log(req.body.order_date);
+>>>>>>> origin
   Orders.create({
     order_date: req.body.order_date,
     order_status: req.body.order_status,
@@ -112,7 +117,11 @@ router.post('/', withAuth, (req, res) => {
     bags: req.body.bags,
     comments: req.body.comments,
     customer_id: req.session.customer_id,
+<<<<<<< HEAD
     laundromat_id: '1',
+=======
+    laundromat_id : "1" // Keeping laudromat_id 1 as there should be one laundromat.
+>>>>>>> origin
   })
     .then((dbOrdersData) => res.json(dbOrdersData))
     .catch((err) => {
