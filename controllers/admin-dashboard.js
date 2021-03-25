@@ -13,6 +13,9 @@ router.get('/orders', withAdminAuth,(req, res) => {
     where: {
       laundromat_id: req.session.laundromat_id
       },
+      order: [
+        ['order_date', 'ASC']
+    ],
     attributes: [
       'id',
       'order_date',
@@ -75,7 +78,7 @@ router.get('/orders/:id', (req, res) => {
         res.status(404).json({ message: 'No order found with this id' });
         return;
       }
-      // res.json(dbOrderData);
+      
       const order = dbOrderData.get({ plain: true });
 
       res.render('single-order', {
@@ -102,10 +105,10 @@ router.post('/logout', (req, res) => {
   if (req.session.adminLoggedIn) {
 
       req.session.destroy(() => {
-        console.log("Inside if destroy")
+        // console.log("Inside if destroy")
         res.render('login');
       });
-      console.log("outside if destroy")
+      // console.log("outside if destroy")
   } 
   else {
     console.log("else")
