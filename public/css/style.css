@@ -14,7 +14,7 @@ p {
     font-size: 1em;
 }
 
-/* -----Hero Rules */
+/* -----Homepage Rules */
 .dryCleanDiv{
     background-color: rgba(96, 96, 96, .6);
     border-radius: 25px;
@@ -93,7 +93,9 @@ p {
 .text-shadowW {
     text-shadow: 1px 1px #ffffff;
 }
-
+.howItWorks {
+    font-family: 'Alegreya', serif;
+}
 .ctaText p::first-letter {
     font-size: 200%;
 }
@@ -105,7 +107,9 @@ p {
 .ctaImg2{
     height: 80%;
 }
-
+.available{
+    height: 180px;
+}
 #footerBody {
     background-color: var(--quarternary-color);
 }
@@ -154,7 +158,7 @@ p {
 }
 
 /* -----------cust dash-------- */
-.overflow-auto {
+.orderDiv {
     height: 600px;
 }
 thead{

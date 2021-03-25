@@ -4,20 +4,27 @@
     {{#unless orders}}
     <h3 align="center">No orders yet!</h3>
     {{/unless}}
-    <div class="overflow-auto">
+    <div class="overflow-auto orderDiv">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
             {{#each orders}}
             <div class="col mt-3">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">{{this.customer.name}} ({{this.order_type}})</h5>
+                        <h5 class="card-title">{{this.customer.name}} <br> ({{this.order_type}})</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{format_date this.order_date}}</h6>
                         <p class="card-text">{{this.customer.street_address}}
                             <br>{{this.customer.city}} {{this.customer.state}} {{this.customer.zipcode}}</p>
-                        <h6 class="card-subtitle mb-2 text-muted">Comment : {{ this.comments}}</h6>
-                        <a href="mailto:{{this.customer.email}}?subject=SimpleSuds - your order ({{format_date this.order_date}}) update"  class="btn btn-outline-secondary card-link">Email</a>
-                        <a href="#" id="{{this.id}}" name={{next_step this.order_status}}
-                            class="updateOrderForm btn btn-success card-link " 
+                        {{!-- <h6 class="card-subtitle mb-2 text-muted">Comment : {{ this.comments}}</h6> --}}
+                        {{#if this.comments}}
+                        <a type="button" class="col-12 pb-1" href="#" data-bs-toggle="modal"
+                            data-bs-target="#modal{{this.id}}">
+                            View Comments
+                        </a>
+                        {{/if}}
+                        <a href="mailto:{{this.customer.email}}?subject=SimpleSuds - your order ({{format_date this.order_date}}) update"
+                            class="btn btn-outline-secondary card-link">Email</a>
+                        <a href="#" id="{{this.id}}" name={{this.order_status}}
+                            class="updateOrderForm btn btn-{{next_step this.order_status}} card-link"
                             onclick="changeStatus(this.id)">{{this.order_status}}</a>
                         {{!-- here button id will give you next order status and name will give you id. --}}
                     </div>
@@ -26,5 +33,25 @@
             {{/each}}
         </div>
     </div>
+    {{#each orders}}
+    {{#if this.comments}}
+    <div class="modal fade" id="modal{{this.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Comment from {{this.customer.email}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{{this.comments}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+    {{/each}}
 
     <script src="/js/update_order.js"></script>
