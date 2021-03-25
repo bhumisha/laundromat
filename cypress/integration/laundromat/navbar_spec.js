@@ -16,11 +16,4 @@ describe('navbar tests', () => {
     cy.get('.navbar-nav > #loginBtn').click();
     cy.get('#loginForm').should('be.visible');
   });
-
-  it('navbar signup button opens signup modal', () => {
-    cy.log('Signup modal is not visible until navbar button clicked');
-    cy.get('#signUpForm').should('not.be.visible');
-    cy.get('.navbar-nav > #signUpBtn').click();
-    cy.get('#signUpForm').should('be.visible');
-  });
 });
