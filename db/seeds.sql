@@ -10,5 +10,5 @@ VALUES
 INSERT INTO `laundromat_db`.`locations` (`street_address`, `city`, `state`, `zipcode`,`laundromat_id`) VALUES ('4355 Blaco Street', 'Fremont', 'CA', '94538','1');
 
 INSERT INTO `laundromat_db`.`orders` (`order_date`, `order_status`, `order_type`,`bags`,`comments`,`customer_id`,`laundromat_id`) 
-VALUES ('2021-03-24', 'Pick','Wash', '1','Clean Nicely','1','1');
+VALUES ('2021-03-24', 'Pending','Wash&Fold', '1','Clean Nicely','1','1');
 

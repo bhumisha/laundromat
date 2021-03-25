@@ -6,8 +6,8 @@ const adminDashboardRoutes = require('./admin-dashboard.js');
 const homeRoutes = require('./home-routes.js');
 
 router.use('/', homeRoutes);
-router.use('/cust', customerDashboardRoutes);
-router.use('/admin', adminDashboardRoutes);
+router.use('/cust', customerDashboardRoutes); //
+router.use('/admin', adminDashboardRoutes); //Get Admin Home page details - orders
 router.use('/api', apiRoutes);
 
 router.use((req, res) => {

@@ -1,31 +1,36 @@
 module.exports = {
+  //Date format
   format_date: date => {
     return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(
       date
     ).getFullYear()}`;
   },
 
-  next_step: word => {
-    word = word.toLowerCase();
+  //This is used to get next order status.
+  next_step = word => {
     switch (word) {
-      case 'pick':
+      case 'Pending':
         word = 'Accepted'
         break;
-      case 'accepted':
+      case 'Accepted':
         word = 'Cleaning'
         break;
-      case 'cleaning':
+      case 'Cleaning':
         word = 'Delivering'
         break;
-      case 'delivering':
+      case 'Delivering':
         word = 'Complete'
         break;
+        case 'Complete':
+        word = 'Pending'
+        break;
     }
-
+  
     return word;
   },
-
   
+
+  //This is used to get date from date picker.
   todays_date: () => {
     var today = new Date();
     var dd = today.getDate();
