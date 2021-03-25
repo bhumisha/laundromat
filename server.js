@@ -64,6 +64,6 @@ app.use(require('./controllers/'));
  * We'll have to do that a few times throughout this project,
  * so it's best to keep the {force: false}.
  **/
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening to port ' + PORT));
 });
