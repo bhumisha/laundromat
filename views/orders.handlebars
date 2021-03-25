@@ -16,8 +16,9 @@
                             <br>{{this.customer.city}} {{this.customer.state}} {{this.customer.zipcode}}</p>
                         <h6 class="card-subtitle mb-2 text-muted">Comment : {{ this.comments}}</h6>
                         <a href="mailto:{{this.customer.email}}" class="btn btn-outline-secondary card-link">Email</a>
-                        <a href="" id="{{this.id}}" name={{next_step this.order_status}}
-                            class="updateOrderForm btn btn-success card-link ">{{this.order_status}}</a>
+                        <a href="#" id="{{this.id}}" name={{next_step this.order_status}}
+                            class="updateOrderForm btn btn-success card-link " 
+                            onclick="changeStatus(this.id)">{{this.order_status}}</a>
                         {{!-- here button id will give you next order status and name will give you id. --}}
                     </div>
                 </div>
