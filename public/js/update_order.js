@@ -1,11 +1,7 @@
 
 
-async function editFormHandler(event) {
+async function editFormHandler(id,order_status) {
   event.preventDefault();
-  
-
-  const id = document.querySelector('.updateOrderForm').id;
-  const order_status = document.querySelector('.updateOrderForm').name;
   
   const response = await fetch(`/api/orders/${id}`, {
     method: 'PUT',
@@ -24,4 +20,34 @@ async function editFormHandler(event) {
   }
 }
 
-document.querySelector('.updateOrderForm').addEventListener('click', editFormHandler);
+
+let next_step = word => {
+  switch (word) {
+    case 'Pending':
+      word = 'Accepted'
+      break;
+    case 'Accepted':
+      word = 'Cleaning'
+      break;
+    case 'Cleaning':
+      word = 'Delivering'
+      break;
+    case 'Delivering':
+      word = 'Complete'
+      break;
+      case 'Complete':
+      word = 'Pending'
+      break;
+  }
+
+  return word;
+},
+
+
+changeStatus = id => {
+  console.log(id);
+  let val = document.getElementById(id).innerHTML;
+  val = next_step(val);
+  editFormHandler(id, val);
+  return;
+};
