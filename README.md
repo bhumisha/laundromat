@@ -24,7 +24,7 @@ To install dependencies, run the following command:
 
 This will install mysql2, dotenv, Handlebars.js,express-session,express, bcrypt and Sequelize libraries, passport and cypress.
 
-## Project Deployment / GitHub Detail
+## Project Deployment / GitHub Details
 
 To clone the project:
 - SSH - git@github.com:bhumisha/laundromat.git
