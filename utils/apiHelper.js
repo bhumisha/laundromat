@@ -10,6 +10,7 @@ const sortCity = (location) =>{
     }
   }
   cities = cities.sort();
+  console.log(cities);
   return cities;
 }
 const sortState = (location) =>{
@@ -20,6 +21,7 @@ const sortState = (location) =>{
     }
   }
   states = states.sort();
+  console.log(states);
   return states;
 }
 
