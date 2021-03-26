@@ -1,5 +1,6 @@
 # SimpleSuds 
-    SimpleSuds connects customers to local laundromats that will pick up and return laundry clean, ironed, and folded
+SimpleSuds connects customers to local laundromats that will pick up and return laundry clean, ironed, and folded
+
 ## Technology 
 - MVC (Model View Controller) pattern 
 - BootStrap framework with: 
