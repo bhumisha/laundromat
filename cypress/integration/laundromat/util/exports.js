@@ -2,12 +2,14 @@ export const newCustomer = () => {
   const random = Math.floor(Math.random() * 1000);
   return {
     email: `cust${random}@foo.test`,
-    password: 'password123',
+    goodPassword: 'password123',
+    badPassword: 'badPassword',
     street: `${random} Main Street`,
     city: 'San Francisco',
     state: 'CA',
     zip: '94110',
-    bags: 2,
+    bags: '2',
+    comment: 'Light starch',
   };
 };
 
@@ -35,8 +37,8 @@ export const orderType = {
 };
 
 export const firstLaundroMat = {
-  //this will need to be updated based on the first laundromat record (id=1)
-  email: 'laundro725@foo.test',
+  //if no laundromat have signed up yet, run the laundromat_spec.js to create a new laundomat (or manually sign up a laundromat). Then look up the laundromat in the database. update the email/password in this function to match the first laundromat record (id = 1)
+  email: 'laundro813@foo.test',
   password: 'password123',
 };
 

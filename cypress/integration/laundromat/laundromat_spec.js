@@ -1,4 +1,8 @@
-import { loginAsLaundromat, newLaundromat } from './util/exports';
+import {
+  loginAsLaundromat,
+  newLaundromat,
+  firstLaundroMat,
+} from './util/exports';
 
 const laundromat = newLaundromat();
 
