@@ -28,18 +28,18 @@ describe('customer tests', () => {
     cy.get('input[name="srvcDate"]').type(dateOfService);
     cy.get('#bagCount').clear().type(customer.bags);
     cy.get('#serviceSelect').select(selectService.washAndFold);
-    cy.get('#comment').type('Light starch');
+    cy.get('#comment').type(customer.comment);
     cy.get('.btn').contains('Confirm').click();
-    //bug: the order confirmation shows the day before requested date of service.
-    cy.get('.table-light > tr > :nth-child(1)').contains(
-      serviceDateConfirmation
-    );
     cy.get('.table-light > tr > :nth-child(2)').contains(orderType.washAndFold);
     cy.get('.table-light > tr > :nth-child(3)').contains('Pending');
     cy.get('.table-light > tr > :nth-child(4)').contains(customer.bags);
+    //bug: the order confirmation shows the day before requested date of service, which causes this test to fail:
+    cy.get('.table-light > tr > :nth-child(1)').contains(
+      serviceDateConfirmation
+    );
   });
 
-  it('verifies laundromat received order', () => {
+  it('verifies laundromat received order and can view customer comments', () => {
     loginAsLaundromat(firstLaundroMat);
     cy.get('.card')
       .last()
@@ -48,23 +48,50 @@ describe('customer tests', () => {
         expect($card).to.contain(orderType.washAndFold);
         expect($card).to.contain(customer.street);
         expect($card).to.contain(customer.city);
-        expect($card).to.contain('Light starch');
+        expect($card).to.contain('Pending');
+      });
+    cy.log('Verify laundromat can view customer comment');
+    cy.get('.card > .card-body > .col-12').last().click();
+    cy.get('.modal-dialog')
+      .last()
+      .should(($comment) => {
+        expect($comment).to.contain(customer.comment);
+        expect($comment).to.contain(customer.email);
       });
   });
 
+  it('verifies laundromat with existing orders can email customer ', () => {
+    loginAsLaundromat(firstLaundroMat);
+    cy.get('.card')
+      .last()
+      .within(() => {
+        cy.contains('Email')
+          .should('have.attr', 'href')
+          .and('include', 'mailto')
+          .and('include', customer.email)
+          .and('include', 'SimpleSuds - your order');
+      });
+  });
+
+  it('verifies laundromat with pending order can accept order', () => {
+    loginAsLaundromat(firstLaundroMat);
+    cy.get('.card').last().contains('Pending').click();
+    cy.get('.card').last().contains('Accepted');
+  });
+
+  it('verifies customer sees laundromat accepted order',
+    () => {
+      loginAsCustomer(customer, true);
+      cy.contains('Accepted');
+    });
+
   it('verifies existing member member can login', () => {
-    cy.get('.navbar-nav > #loginBtn').click();
-    cy.get('#loginEmail').type(customer.email);
-    cy.get('#loginPw').type(customer.password);
-    cy.get('#loginForm > .mt-3').click();
+    loginAsCustomer(customer, true);
     cy.contains('Place your Order');
   });
 
   it('verifies incorrect password throws error', () => {
-    cy.get('.navbar-nav > #loginBtn').click();
-    cy.get('#loginEmail').type(customer.email);
-    cy.get('#loginPw').type('badPassword');
-    cy.get('#loginForm > .mt-3').click();
+    loginAsCustomer(customer, false)
     cy.on('window:alert', (str) => {
       expect(str).to.equal('Unauthorized');
     });
@@ -79,13 +106,24 @@ describe('customer tests', () => {
   });
 });
 
+function loginAsCustomer(customer, goodPassword?) {
+  cy.get('.navbar-nav > #loginBtn').click();
+  cy.get('#loginEmail').type(customer.email);
+  if(goodPassword) {
+    cy.get('#loginPw').type(customer.goodPassword);
+  } else {
+    cy.get('#loginPw').type(customer.badPassword);
+  }
+  cy.get('#loginForm > .mt-3').click();
+}
+
 function fillInSignupForm(newCustomer) {
   cy.log('Click Sign-Up button in hero');
   cy.get('.d-flex > #signUpBtn').click();
   cy.get('#signUpForm').should('be.visible');
   cy.get('#signUpEmail').type(newCustomer.email);
-  cy.get('#signUpPw').type(newCustomer.password);
-  cy.get('#pwVerify').type(newCustomer.password);
+  cy.get('#signUpPw').type(newCustomer.goodPassword);
+  cy.get('#pwVerify').type(newCustomer.goodPassword);
   cy.get('#signUpStreetAdd').type(newCustomer.street);
   cy.get('#signUpCity').type(newCustomer.city);
   cy.get('#signUpState').select(newCustomer.state);
