@@ -1,5 +1,7 @@
 # SimpleSuds 
+
 SimpleSuds connects customers to local laundromats that will pick up and return laundry clean, ironed, and folded.
+Customer can create accounts and place orders and Laudromat as admin can update the order.
 
 ### Technology 
 - MVC (Model View Controller) pattern 
@@ -34,6 +36,23 @@ Project Source code : https://github.com/bhumisha/laundromat
 
 This project is also deployed to Heroku, a cloud platform as a service where user can deploy project in many languages:
 - Heroku URL https://simple-suds.herokuapp.com
+
+### Images
+
+Customer Login:
+![](public/images/homepage.png)
+
+Place Order 
+![](public/images/placeorder.png)
+
+Change Address
+![](public/images/changeaddress.png)
+
+Laundromat Login
+![](public/images/laundromat.png)
+
+Order approvals
+![](public/images/adminorder.png)
 
 ### Automotated testing with Cypress
 <img width="1552" alt="Screen Shot 2021-03-25 at 5 22 34 PM" src="https://user-images.githubusercontent.com/70823737/112559718-ce3e6480-8d8e-11eb-8bf9-651ea3775510.png">
